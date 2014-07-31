@@ -1,0 +1,52 @@
+package io.gatling.benchmark.jsonpath;
+
+import static io.gatling.benchmark.jsonpath.GatlingJacksonBenchmark.*;
+import io.gatling.benchmark.util.UnsafeUtil;
+
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeUnit;
+
+import org.boon.json.implementation.JsonFastParser;
+import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
+import org.openjdk.jmh.annotations.OutputTimeUnit;
+import org.openjdk.jmh.annotations.Scope;
+import org.openjdk.jmh.annotations.State;
+
+@OutputTimeUnit(TimeUnit.SECONDS)
+public class GatlingBoonFastLazyChopBenchmark {
+
+	@State(Scope.Thread)
+	public static class ThreadState {
+		private int i = -1;
+
+		public int next() {
+			i++;
+			if (i == BYTES_AND_JSONPATHS.length)
+				i = 0;
+			return i;
+		}
+	}
+
+	private JsonFastParser newLazyChopParser() {
+		JsonFastParser jsonParser = new JsonFastParser(false, false, true, false);
+		jsonParser.setCharset(StandardCharsets.UTF_8);
+		return jsonParser;
+	}
+
+	@GenerateMicroBenchmark
+	public Object parseChars(ThreadState state) throws Exception {
+		int i = state.next();
+		byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
+		Object json = newLazyChopParser().parse(UnsafeUtil.getChars(new String(bytes, StandardCharsets.UTF_8)));
+		return BYTES_AND_JSONPATHS[i].path.query(json);
+	}
+	
+	@GenerateMicroBenchmark
+	public Object parseStream(ThreadState state) throws Exception {
+		int i = state.next();
+		InputStream stream = Bytes.stream(BYTES_AND_JSONPATHS[i].chunks);
+		Object json = newLazyChopParser().parse(stream, StandardCharsets.UTF_8);
+		return BYTES_AND_JSONPATHS[i].path.query(json);
+	}
+}

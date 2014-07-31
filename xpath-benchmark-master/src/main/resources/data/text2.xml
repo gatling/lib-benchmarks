@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" soap:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns5="http://www.themindelectric.com/package/com.esri.is.services.glue.v2.routefinder/" xmlns:ns6="http://www.themindelectric.com/package/com.esri.is.services.glue.v2.mapimage/" xmlns:ns7="http://www.themindelectric.com/package/com.esri.is.services.common.v2.geom/">
+  <soap:Body>
+    <n:findRouteResponse xmlns:n="v2">
+      <Result href="#id0"/>
+    </n:findRouteResponse>
+    <id id="id0" soapenc:root="0" xsi:type="ns5:RouteInfo">
+      <mapImageInfo href="#id1"/>
+      <segDescriptions href="#id3"/>
+      <totalDescription href="#id15"/>
+    </id>
+    <id id="id1" soapenc:root="0" xsi:type="ns6:MapImageInfo">
+      <mapUrl xsi:type="xsd:string">http://redlands.geographynetwork.com/out/maps/GDT_ArcWeb_US_peachmap125364425.jpg</mapUrl>
+      <legendUrl xsi:type="xsd:string">http://redlands.geographynetwork.com/out/maps/GDT_ArcWeb_US_peachmap125364426.jpg</legendUrl>
+      <mapExtent href="#id2"/>
+    </id>
+    <id id="id2" soapenc:root="0" xsi:type="ns7:Envelope">
+      <minx xsi:type="xsd:double">-117.256667</minx>
+      <miny xsi:type="xsd:double">33.980556</miny>
+      <maxx xsi:type="xsd:double">-117.106667</maxx>
+      <maxy xsi:type="xsd:double">34.130556</maxy>
+    </id>
+    <id id="id3" soapenc:root="0" xsi:type="soapenc:Array" soapenc:arrayType="ns5:SegDescription[11]">
+      <i href="#id4"/>
+      <i href="#id5"/>
+      <i href="#id6"/>
+      <i href="#id7"/>
+      <i href="#id8"/>
+      <i href="#id9"/>
+      <i href="#id10"/>
+      <i href="#id11"/>
+      <i href="#id12"/>
+      <i href="#id13"/>
+      <i href="#id14"/>
+    </id>
+    <id id="id4" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Depart The first stop</description1>
+      <description2 xsi:type="xsd:string">Go East on W Pennsylvania Ave</description2>
+      <description3 xsi:type="xsd:string">Drive &lt; 0.1 mile(s) ~ &lt; 1 minute</description3>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">0.111923</distance>
+      <time xsi:type="xsd:double">0.167885</time>
+    </id>
+    <id id="id5" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Turn right on Orange St</description1>
+      <description2 xsi:type="xsd:string">Drive 0.3 mile(s) ~ &lt; 1 minute</description2>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">0.400445</distance>
+      <time xsi:type="xsd:double">0.429049</time>
+    </id>
+    <id id="id6" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Straight on State Hwy 38</description1>
+      <description2 xsi:type="xsd:string">Drive 0.6 mile(s) ~ 1 minute(s)</description2>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">0.961963</distance>
+      <time xsi:type="xsd:double">1.030675</time>
+    </id>
+    <id id="id7" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Straight on No name</description1>
+      <description2 xsi:type="xsd:string">Drive 0.3 mile(s) ~ &lt; 1 minute</description2>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">0.447768</distance>
+      <time xsi:type="xsd:double">0.479752</time>
+    </id>
+    <id id="id8" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Turn right on Redlands Mall</description1>
+      <description2 xsi:type="xsd:string">Drive &lt; 0.1 mile(s) ~ &lt; 1 minute</description2>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">0.149304</distance>
+      <time xsi:type="xsd:double">0.159969</time>
+    </id>
+    <id id="id9" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Straight on W Redlands Blvd</description1>
+      <description2 xsi:type="xsd:string">Drive &lt; 0.1 mile(s) ~ &lt; 1 minute</description2>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">0.12692</distance>
+      <time xsi:type="xsd:double">0.135986</time>
+    </id>
+    <id id="id10" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Turn left on N Eureka St</description1>
+      <description2 xsi:type="xsd:string">Drive &lt; 0.1 mile(s) ~ &lt; 1 minute</description2>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">0.029861</distance>
+      <time xsi:type="xsd:double">0.044792</time>
+    </id>
+    <id id="id11" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Arrive The second stop</description1>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">0.0</distance>
+      <time xsi:type="xsd:double">0.0</time>
+    </id>
+    <id id="id12" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Go back North on N Eureka St</description1>
+      <description2 xsi:type="xsd:string">Drive &lt; 0.1 mile(s) ~ &lt; 1 minute</description2>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">0.029861</distance>
+      <time xsi:type="xsd:double">0.044792</time>
+    </id>
+    <id id="id13" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Turn left on W Redlands Blvd</description1>
+      <description2 xsi:type="xsd:string">Drive 0.6 mile(s) ~ &lt; 1 minute</description2>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">0.932715</distance>
+      <time xsi:type="xsd:double">0.999337</time>
+    </id>
+    <id id="id14" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Turn left on New York St</description1>
+      <description2 xsi:type="xsd:string">Drive 0.2 mile(s) ~ &lt; 1 minute</description2>
+      <description3 xsi:type="xsd:string">Arrive The last stop</description3>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">0.278058</distance>
+      <time xsi:type="xsd:double">0.417087</time>
+    </id>
+    <id id="id15" soapenc:root="0" xsi:type="ns5:SegDescription">
+      <description1 xsi:type="xsd:string">Driving distance: 2.2 mile(s)</description1>
+      <description2 xsi:type="xsd:string">Driving time: 3 minute(s)</description2>
+      <distanceUnits xsi:type="xsd:string">km</distanceUnits>
+      <distance xsi:type="xsd:double">3.468821</distance>
+      <time xsi:type="xsd:double">3.883333</time>
+      <segmentExtent href="#id16"/>
+    </id>
+    <id id="id16" soapenc:root="0" xsi:type="ns7:Envelope">
+      <minx xsi:type="xsd:double">-117.195736</minx>
+      <miny xsi:type="xsd:double">34.057053</miny>
+      <maxx xsi:type="xsd:double">-117.182436</maxx>
+      <maxy xsi:type="xsd:double">34.073673</maxy>
+    </id>
+  </soap:Body>
+</soap:Envelope>
