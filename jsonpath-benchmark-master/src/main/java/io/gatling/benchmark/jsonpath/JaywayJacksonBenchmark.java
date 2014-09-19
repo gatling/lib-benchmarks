@@ -6,7 +6,7 @@ import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
-import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
+import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
@@ -50,7 +50,7 @@ public class JaywayJacksonBenchmark {
 		}
 	}
 
-	@GenerateMicroBenchmark
+	@Benchmark
 	public Object parseString(ThreadState state) throws Exception {
 		int i = state.next();
 		byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
@@ -58,14 +58,14 @@ public class JaywayJacksonBenchmark {
 		return BYTES_AND_JSONPATHS[i].path.read(OBJECT_MAPPER.readValue(text, Object.class));
 	}
 
-	@GenerateMicroBenchmark
+	@Benchmark
 	public Object parseBytes(ThreadState state) throws Exception {
 		int i = state.next();
 		byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
 		return BYTES_AND_JSONPATHS[i].path.read(OBJECT_MAPPER.readValue(bytes, Object.class));
 	}
 
-	@GenerateMicroBenchmark
+	@Benchmark
 	public Object parseStream(ThreadState state) throws Exception {
 		int i = state.next();
 		InputStream stream = Bytes.stream(BYTES_AND_JSONPATHS[i].chunks);

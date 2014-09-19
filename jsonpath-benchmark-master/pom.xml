@@ -14,14 +14,15 @@
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<jmh.version>0.8</jmh.version>
+		<jmh.version>1.1</jmh.version>
 		<jayway.version>0.9.1</jayway.version>
-		<gatling-jsonpath.version>0.4.1</gatling-jsonpath.version>
-		<jackson2.version>2.4.0</jackson2.version>
-		<boon.version>0.20</boon.version>
+		<gatling-jsonpath.version>0.5.0</gatling-jsonpath.version>
+		<jackson2.version>2.4.2</jackson2.version>
+		<boon.version>0.27</boon.version>
 		<slf4j.version>1.7.7</slf4j.version>
 		<logback.version>1.1.2</logback.version>
 		<commons-io.version>2.4</commons-io.version>
+        <jodd.version>3.6</jodd.version>
 	</properties>
 
 	<dependencies>
@@ -61,6 +62,12 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson2.version}</version>
 		</dependency>
+
+        <dependency>
+            <groupId>org.jodd</groupId>
+            <artifactId>jodd-json</artifactId>
+            <version>${jodd.version}</version>
+        </dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
