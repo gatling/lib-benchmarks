@@ -28,10 +28,10 @@ public abstract class AbstractXPathBenchmark {
 		}
 	}
 
-	protected abstract Object parse(InputSource inputSource, String path) throws Exception;
+	protected abstract String parse(InputSource inputSource, String path) throws Exception;
 
 	@Benchmark
-	public Object parseByString(ThreadState state) throws Exception {
+	public String parseByString(ThreadState state) throws Exception {
 		int i = state.next();
 
 		Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
@@ -44,7 +44,7 @@ public abstract class AbstractXPathBenchmark {
 	}
 
 	@Benchmark
-	public Object parseByInputStreamReader(ThreadState state) throws Exception {
+	public String parseByInputStreamReader(ThreadState state) throws Exception {
 		int i = state.next();
 
 		Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
@@ -56,7 +56,7 @@ public abstract class AbstractXPathBenchmark {
 	}
 
 	@Benchmark
-	public Object parseByInputStream(ThreadState state) throws Exception {
+	public String parseByInputStream(ThreadState state) throws Exception {
 		int i = state.next();
 
 		Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);

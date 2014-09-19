@@ -19,7 +19,7 @@ import com.ximpleware.VTDNav;
 public class VtdXmlBenchmark extends AbstractXPathBenchmark {
 
 	@Override
-	protected Object parse(InputSource inputSource, String path) throws Exception {
+	protected String parse(InputSource inputSource, String path) throws Exception {
 		return null;
 	}
 

@@ -27,7 +27,7 @@ public class SaxonBenchmark extends AbstractXPathBenchmark {
 
 	private static final Map<String, ThreadLocal<XPathSelector>> SAXON_XPATH_SELECTORS = new ConcurrentHashMap<String, ThreadLocal<XPathSelector>>();
 
-	protected Object parse(InputSource inputSource, final String path) throws Exception {
+	protected String parse(InputSource inputSource, final String path) throws Exception {
 		final XPathCompiler xPathCompiler = SAXON_PROCESSOR.newXPathCompiler(); // namespaces
 		ThreadLocal<XPathSelector> xPathSelectorTL = SAXON_XPATH_SELECTORS.get(path);
 		if (xPathSelectorTL == null) {
