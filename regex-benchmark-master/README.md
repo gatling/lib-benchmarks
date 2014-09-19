@@ -22,7 +22,7 @@ Here are the results on my machine:
 * Hotspot 1.7.0_45
 * Intel Core i7 2,7 GHz
 
-Benchmark                                Mode Thr     Count  Sec         Mean   Mean error    Units
-RegexBenchmark.parseCharBuffer          thrpt  16        20    1     5188,818      495,537    ops/s
-RegexBenchmark.parseFastCharSequence    thrpt  16        20    1     3890,151      393,322    ops/s
-RegexBenchmark.parseString              thrpt  16        20    1     3819,451      405,928    ops/s
+Benchmark                                        Mode  Samples     Score  Score error  Units
+RegexBenchmark.parseCharBuffer          thrpt       20  5555,027      194,975  ops/s
+RegexBenchmark.parseFastCharSequence    thrpt       20  4306,553      271,581  ops/s
+RegexBenchmark.parseString              thrpt       20  4258,894      282,915  ops/s
