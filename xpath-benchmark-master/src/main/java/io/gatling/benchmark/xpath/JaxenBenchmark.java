@@ -3,22 +3,17 @@ package io.gatling.benchmark.xpath;
 import java.io.StringReader;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.jaxen.dom.DOMXPath;
-import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.logic.BlackHole;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.EntityResolver;
 import org.xml.sax.InputSource;
 
-@OutputTimeUnit(TimeUnit.SECONDS)
 public class JaxenBenchmark extends AbstractXPathBenchmark {
 
   private static final DocumentBuilderFactory FACTORY;
@@ -66,20 +61,5 @@ public class JaxenBenchmark extends AbstractXPathBenchmark {
 
     Node node = (Node) domxPath.selectSingleNode(document);
     return node.getTextContent();
-  }
-
-  @GenerateMicroBenchmark
-  public void parseByString(ThreadState state, BlackHole bh) throws Exception {
-    super.parseByString(state, bh);
-  }
-
-  @GenerateMicroBenchmark
-  public void parseByInputStreamReader(ThreadState state, BlackHole bh) throws Exception {
-    super.parseByInputStreamReader(state, bh);
-  }
-
-  @GenerateMicroBenchmark
-  public void parseByInputStream(ThreadState state, BlackHole bh) throws Exception {
-    super.parseByInputStream(state, bh);
   }
 }

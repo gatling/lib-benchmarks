@@ -2,19 +2,14 @@ package io.gatling.benchmark.xpath;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathFactory;
 
-import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.logic.BlackHole;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
-@OutputTimeUnit(TimeUnit.SECONDS)
 public class XalanBenchmark extends AbstractXPathBenchmark {
 
 	static {
@@ -43,20 +38,5 @@ public class XalanBenchmark extends AbstractXPathBenchmark {
 		Document document = JaxenBenchmark.DOCUMENT_BUILDER.get().parse(inputSource);
 
 		return expression.evaluate(document);
-	}
-
-	@GenerateMicroBenchmark
-	public void parseByString(ThreadState state, BlackHole bh) throws Exception {
-		super.parseByString(state, bh);
-	}
-
-	@GenerateMicroBenchmark
-	public void parseByInputStreamReader(ThreadState state, BlackHole bh) throws Exception {
-		super.parseByInputStreamReader(state, bh);
-	}
-
-	@GenerateMicroBenchmark
-	public void parseByInputStream(ThreadState state, BlackHole bh) throws Exception {
-		super.parseByInputStream(state, bh);
 	}
 }

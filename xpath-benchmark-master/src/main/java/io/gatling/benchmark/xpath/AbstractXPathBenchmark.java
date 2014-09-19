@@ -7,11 +7,10 @@ import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
-import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
+import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
-import org.openjdk.jmh.logic.BlackHole;
 import org.xml.sax.InputSource;
 
 @OutputTimeUnit(TimeUnit.SECONDS)
@@ -31,8 +30,8 @@ public abstract class AbstractXPathBenchmark {
 
 	protected abstract Object parse(InputSource inputSource, String path) throws Exception;
 
-	@GenerateMicroBenchmark
-	public void parseByString(ThreadState state, BlackHole bh) throws Exception {
+	@Benchmark
+	public Object parseByString(ThreadState state) throws Exception {
 		int i = state.next();
 
 		Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
@@ -41,11 +40,11 @@ public abstract class AbstractXPathBenchmark {
 
 		String text = new String(merge(chunks), StandardCharsets.UTF_8);
 		InputSource inputSource = new InputSource(new StringReader(text));
-		bh.consume(parse(inputSource, path));
+		return parse(inputSource, path);
 	}
 
-	@GenerateMicroBenchmark
-	public void parseByInputStreamReader(ThreadState state, BlackHole bh) throws Exception {
+	@Benchmark
+	public Object parseByInputStreamReader(ThreadState state) throws Exception {
 		int i = state.next();
 
 		Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
@@ -53,11 +52,11 @@ public abstract class AbstractXPathBenchmark {
 		String path = c.right;
 
 		InputSource inputSource = new InputSource(new InputStreamReader(stream(chunks), StandardCharsets.UTF_8));
-		bh.consume(parse(inputSource, path));
+		return parse(inputSource, path);
 	}
 
-	@GenerateMicroBenchmark
-	public void parseByInputStream(ThreadState state, BlackHole bh) throws Exception {
+	@Benchmark
+	public Object parseByInputStream(ThreadState state) throws Exception {
 		int i = state.next();
 
 		Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
@@ -66,6 +65,6 @@ public abstract class AbstractXPathBenchmark {
 
 		InputSource inputSource = new InputSource(stream(chunks));
 		inputSource.setEncoding(StandardCharsets.UTF_8.name());
-		bh.consume(parse(inputSource, path));
+		return parse(inputSource, path);
 	}
 }

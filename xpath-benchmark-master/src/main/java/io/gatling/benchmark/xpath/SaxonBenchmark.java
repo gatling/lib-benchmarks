@@ -2,7 +2,6 @@ package io.gatling.benchmark.xpath;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.TimeUnit;
 
 import javax.xml.transform.Source;
 import javax.xml.transform.sax.SAXSource;
@@ -18,12 +17,8 @@ import net.sf.saxon.s9api.XdmItem;
 import net.sf.saxon.s9api.XdmNode;
 import net.sf.saxon.s9api.XdmValue;
 
-import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.logic.BlackHole;
 import org.xml.sax.InputSource;
 
-@OutputTimeUnit(TimeUnit.SECONDS)
 public class SaxonBenchmark extends AbstractXPathBenchmark {
 
 	private static final Processor SAXON_PROCESSOR = new Processor(false);
@@ -79,20 +74,5 @@ public class SaxonBenchmark extends AbstractXPathBenchmark {
 			// only do that once you've read
 			xPathSelector.getUnderlyingXPathContext().setContextItem(null);
 		}
-	}
-
-	@GenerateMicroBenchmark
-	public void parseByString(ThreadState state, BlackHole bh) throws Exception {
-		super.parseByString(state, bh);
-	}
-	
-	@GenerateMicroBenchmark
-	public void parseByInputStreamReader(ThreadState state, BlackHole bh) throws Exception {
-		super.parseByInputStreamReader(state, bh);
-	}
-	
-	@GenerateMicroBenchmark
-	public void parseByInputStream(ThreadState state, BlackHole bh) throws Exception {
-		super.parseByInputStream(state, bh);
 	}
 }

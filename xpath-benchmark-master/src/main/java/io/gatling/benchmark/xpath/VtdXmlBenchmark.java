@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.openjdk.jmh.annotations.GenerateMicroBenchmark;
+import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.logic.BlackHole;
 import org.xml.sax.InputSource;
 
 import com.ximpleware.AutoPilot;
@@ -70,14 +69,14 @@ public class VtdXmlBenchmark extends AbstractXPathBenchmark {
 		return results;
 	}
 
-	@GenerateMicroBenchmark
-	public void parseByBytes(ThreadState state, BlackHole bh) throws Exception {
+	@Benchmark
+	public Object parseByBytes(ThreadState state) throws Exception {
 		int i = state.next();
 		
 		Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
 		byte[][] chunks = c.left;
 		String path = c.right;
 		
-		bh.consume(parse(merge(chunks), path));
+		return parse(merge(chunks), path);
 	}
 }
