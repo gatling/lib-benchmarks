@@ -56,7 +56,6 @@ public class Bytes {
 			public int read() throws IOException {
 
 				if (eof) {
-					System.err.println("!!eof");
 					return -1;
 				}
 

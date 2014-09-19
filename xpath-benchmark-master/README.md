@@ -24,14 +24,20 @@ Here are the results on my machine:
 * Hotspot 1.7.0_45
 * Intel Core i7 2,7 GHz
 
-Benchmark                                    Mode  Samples          Score  Score error  Units
-VtdXmlBenchmark.parseByBytes                thrpt       20      53985,858     4169,190  ops/s
-SaxonBenchmark.parseByString                thrpt       20      36755,979     9084,400  ops/s
-SaxonBenchmark.parseByInputStreamReader     thrpt       20      36165,319     9001,755  ops/s
-SaxonBenchmark.parseByInputStream           thrpt       20      34885,661     9729,814  ops/s
-JaxenBenchmark.parseByInputStream           thrpt       20      25473,011     8909,831  ops/s
-JaxenBenchmark.parseByInputStreamReader     thrpt       20      23755,716     9669,081  ops/s
-JaxenBenchmark.parseByString                thrpt       20      23278,671     9939,924  ops/s
-XalanBenchmark.parseByInputStream           thrpt       20      18551,164     5613,638  ops/s
-XalanBenchmark.parseByString                thrpt       20      17537,998     5641,955  ops/s
-XalanBenchmark.parseByInputStreamReader     thrpt       20      17267,983     6547,776  ops/s
+Benchmark                                      Mode  Samples          Score  Score error  Units
+VtdXmlBenchmark.parseByBytes                  thrpt       20      56950,205     4400,655  ops/s
+SaxonBenchmark.parseByInputStreamReader       thrpt       20      37263,022     9487,951  ops/s
+SaxonBenchmark.parseByString                  thrpt       20      36692,406    11232,677  ops/s
+SaxonBenchmark.parseByInputStream             thrpt       20      34663,237     9490,812  ops/s
+SaxonBenchmark.parseByFastCharArrayReader     thrpt       20      34653,910     8960,351  ops/s
+SaxonBenchmark.parseByFastStringReader        thrpt       20      33344,311     9117,041  ops/s
+JaxenBenchmark.parseByFastCharArrayReader     thrpt       20      27318,785     9950,762  ops/s
+JaxenBenchmark.parseByInputStreamReader       thrpt       20      23464,951     9035,356  ops/s
+JaxenBenchmark.parseByString                  thrpt       20      22576,293     9646,487  ops/s
+JaxenBenchmark.parseByFastStringReader        thrpt       20      19368,277     8664,141  ops/s
+XalanBenchmark.parseByFastStringReader        thrpt       20      18999,798     6441,667  ops/s
+XalanBenchmark.parseByInputStream             thrpt       20      18653,993     6360,934  ops/s
+XalanBenchmark.parseByFastCharArrayReader     thrpt       20      18421,654     6110,553  ops/s
+JaxenBenchmark.parseByInputStream             thrpt       20      18232,522     9619,912  ops/s
+XalanBenchmark.parseByString                  thrpt       20      17871,921     5977,102  ops/s
+XalanBenchmark.parseByInputStreamReader       thrpt       20      16581,856     5889,130  ops/s

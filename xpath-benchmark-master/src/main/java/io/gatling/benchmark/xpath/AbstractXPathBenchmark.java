@@ -7,6 +7,8 @@ import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
+import io.gatling.benchmark.xpath.util.FastStringReader;
+import io.gatling.benchmark.xpath.util.UnsafeUtil;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
@@ -42,6 +44,32 @@ public abstract class AbstractXPathBenchmark {
 		InputSource inputSource = new InputSource(new StringReader(text));
 		return parse(inputSource, path);
 	}
+
+  @Benchmark
+  public String parseByFastStringReader(ThreadState state) throws Exception {
+    int i = state.next();
+
+    Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
+    byte[][] chunks = c.left;
+    String path = c.right;
+
+    String text = new String(merge(chunks), StandardCharsets.UTF_8);
+    InputSource inputSource = new InputSource(new FastStringReader(text));
+    return parse(inputSource, path);
+  }
+
+  @Benchmark
+  public String parseByFastCharArrayReader(ThreadState state) throws Exception {
+    int i = state.next();
+
+    Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
+    byte[][] chunks = c.left;
+    String path = c.right;
+
+    String text = new String(merge(chunks), StandardCharsets.UTF_8);
+    InputSource inputSource = new InputSource(UnsafeUtil.newFastCharArrayReader(text));
+    return parse(inputSource, path);
+  }
 
 	@Benchmark
 	public String parseByInputStreamReader(ThreadState state) throws Exception {
