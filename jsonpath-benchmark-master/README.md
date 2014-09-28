@@ -45,6 +45,16 @@ JaywayJacksonBenchmark.parseBytes               thrpt       20   62418,382    17
 JaywayJacksonBenchmark.parseStream              thrpt       20   67342,448    17061,375  ops/s
 JaywayJacksonBenchmark.parseString              thrpt       20   58170,730    13918,157  ops/s
 
+GatlingBoonFastLazyChopBenchmark.parseChars     thrpt       20  151759,496 ±  9615,281  ops/s
+GatlingBoonFastLazyChopBenchmark.parseStream    thrpt       20  126040,155 ±  9250,885  ops/s
+GatlingJoddBenchmark.parseString                thrpt       20   91008,957 ±  5582,236  ops/s
+GatlingJacksonBenchmark.parseBytes              thrpt       20   85816,845 ±  5950,653  ops/s
+GatlingJacksonBenchmark.parseStream             thrpt       20   85292,633 ±  7269,367  ops/s
+GatlingJacksonBenchmark.parseString             thrpt       20   73461,003 ±  4818,952  ops/s
+JaywayJacksonBenchmark.parseBytes               thrpt       20   56592,735 ± 14798,225  ops/s
+JaywayJacksonBenchmark.parseStream              thrpt       20   57595,191 ± 13377,361  ops/s
+JaywayJacksonBenchmark.parseString              thrpt       20   50246,417 ± 12202,117  ops/s
+
 ## 20k sample only
 
 Benchmark                                        Mode  Samples      Score  Score error  Units
