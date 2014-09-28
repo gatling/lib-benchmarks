@@ -8,6 +8,7 @@ If the parser can't guess encoding by itself, we try to decode in the most effic
 
 ## tl;dr
 
+Jodd is more that twice faster than Jsoup
 
 ## How to
 
@@ -19,22 +20,12 @@ Run with `java -jar target/microbenchmarks.jar ".*" -wi 2 -i 10 -f 2 -t 8`
 
 Here are the results on my machine:
 
-* OS X 10.9
-* Hotspot 1.7.0_60-ea
+* OS X 10.9.5
+* Hotspot 1.7.0_65
 * Intel Core i7 2,7 GHz
 
-Against Jodd 3.5.2
-
-Benchmark                                          Mode   Samples        Score  Score error    Units
-JoddBenchmark.parseCharsPrecompiledRoundRobin     thrpt        20     4904,432      266,984    ops/s
-JoddBenchmark.parseStringPrecompiledRoundRobin    thrpt        20     4844,750      154,117    ops/s
-JsoupBenchmark.parseStreamRoundRobin              thrpt        20     3009,824      239,242    ops/s
-JsoupBenchmark.parseStringRoundRobin              thrpt        20     3127,410      261,808    ops/s
-
-Against Jodd 3.5.3-SNAPSHOT
-
-Benchmark                                          Mode   Samples        Score  Score error    Units
-JoddBenchmark.parseCharsPrecompiledRoundRobin     thrpt        20     6428,508      312,095    ops/s
-JoddBenchmark.parseStringPrecompiledRoundRobin    thrpt        20     6317,515      174,063    ops/s
-JsoupBenchmark.parseStreamRoundRobin              thrpt        20     3035,378      382,555    ops/s
-JsoupBenchmark.parseStringRoundRobin              thrpt        20     2973,758      394,045    ops/s
+Benchmark                                          Mode  Samples     Score     Error  Units
+JoddBenchmark.parseCharsPrecompiledRoundRobin     thrpt       20  5578,533 ± 275,616  ops/s
+JoddBenchmark.parseStringPrecompiledRoundRobin    thrpt       20  5311,143 ± 285,078  ops/s
+JsoupBenchmark.parseStringRoundRobin              thrpt       20  2363,258 ± 462,125  ops/s
+JsoupBenchmark.parseStreamRoundRobin              thrpt       20  2323,909 ± 577,873  ops/s
