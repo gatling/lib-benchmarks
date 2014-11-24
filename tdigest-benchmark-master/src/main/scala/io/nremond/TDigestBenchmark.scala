@@ -25,9 +25,15 @@ object TDigestBenchmark {
   val samplesLong_10M_50_4000 = samples_10M_50_4000.map(_.toLong)
 
   def main(args: Array[String]) {
-    val histogram = new Histogram(4000, 3)
+    /*val histogram = new Histogram(4000, 3)
     samplesLong_100k_50_4000.foreach(histogram.recordValue)
-    println(histogram.getHistogramData.getValueAtPercentile(95))
+    println(histogram.getHistogramData.getValueAtPercentile(95))*/
+
+
+    val tdigest = new AVLTreeDigest(100.0)
+    samples_100k_50_4000.foreach(tdigest.add)
+    println(tdigest.quantile(95.0))
+    println(tdigest.byteSize)
   }
 }
 

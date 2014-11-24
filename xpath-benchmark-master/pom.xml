@@ -18,11 +18,11 @@
 		<jaxen.version>1.1.6</jaxen.version>
 		<xerces.version>2.11.0</xerces.version>
 		<xalan.version>2.7.1</xalan.version>
-		<saxon.version>9.5.1-6</saxon.version>
+		<saxon.version>9.6.0-1</saxon.version>
 		<vtd-xml.version>2.11</vtd-xml.version>
 		<slf4j.version>1.7.7</slf4j.version>
 		<logback.version>1.1.2</logback.version>
-		<jmh.version>1.1</jmh.version>
+		<jmh.version>1.3.1</jmh.version>
 		<commons-io.version>2.4</commons-io.version>
 	</properties>
 
@@ -76,7 +76,6 @@
 			<groupId>net.sf.saxon</groupId>
 			<artifactId>Saxon-HE</artifactId>
 			<version>${saxon.version}</version>
-			<classifier>compressed</classifier>
 		</dependency>
 
 		<dependency>

@@ -11,15 +11,16 @@ Results
 -------
 
 Benchmark                                                                                        Mode   Samples         Mean   Mean error    Units
-i.g.generatorsBenchmark.ExponentialThreadLocalTest.commonsMath                                  thrpt         5    55698,806     5389,257   ops/ms
-i.g.generatorsBenchmark.ExponentialThreadLocalTest.uncommonsMath_CellularAutomatonRNG           thrpt         5    57949,644     4277,660   ops/ms
-i.g.generatorsBenchmark.ExponentialThreadLocalTest.uncommonsMath_MersenneTwisterRNG             thrpt         5    63113,399     5213,445   ops/ms
-i.g.generatorsBenchmark.ExponentialThreadLocalTest.unsafe_uncommonsMath_CellularAutomatonRNG    thrpt         5    94183,073     3550,085   ops/ms
-i.g.generatorsBenchmark.ExponentialThreadLocalTest.unsafe_uncommonsMath_MersenneTwisterRNG      thrpt         5   101205,440    12049,582   ops/ms
+i.g.generatorsBenchmark.ExponentialThreadLocalTest.unsafe_uncommonsMath_XORShiftRNG             thrpt         5   114192,722    13557,747   ops/ms
+i.g.generatorsBenchmark.ExponentialThreadLocalTest.unsafe_uncommonsMath_MersenneTwisterRNG      thrpt         5   103089,986    15945,502   ops/ms
+i.g.generatorsBenchmark.ExponentialThreadLocalTest.unsafe_uncommonsMath_CellularAutomatonRNG    thrpt         5    90144,821     9747,392   ops/ms
+i.g.generatorsBenchmark.ExponentialThreadLocalTest.commonsMath                                  thrpt         5    67667,008     4153,914   ops/ms
+i.g.generatorsBenchmark.ExponentialThreadLocalTest.uncommonsMath_CellularAutomatonRNG           thrpt         5    53509,963     4550,235   ops/ms
+i.g.generatorsBenchmark.ExponentialThreadLocalTest.uncommonsMath_MersenneTwisterRNG             thrpt         5    51133,115     4134,377   ops/ms
 
-i.g.generatorsBenchmark.PoissonThreadLocalTest.commonsMath                                      thrpt         5    13388,083     1256,455   ops/ms
-i.g.generatorsBenchmark.PoissonThreadLocalTest.uncommonsMath_CellularAutomatonRNG               thrpt         5    50807,071      585,568   ops/ms
-i.g.generatorsBenchmark.PoissonThreadLocalTest.uncommonsMath_MersenneTwisterRNG                 thrpt         5    44526,815      556,187   ops/ms
-i.g.generatorsBenchmark.PoissonThreadLocalTest.unsafe_uncommonsMath_CellularAutomatonRNG        thrpt         5    79538,612     2308,965   ops/ms
-i.g.generatorsBenchmark.PoissonThreadLocalTest.unsafe_uncommonsMath_MersenneTwisterRNG          thrpt         5    75613,509     2372,291   ops/ms
+i.g.generatorsBenchmark.PoissonThreadLocalTest.commonsMath                                      thrpt         5    13041,530      902,941   ops/ms
+i.g.generatorsBenchmark.PoissonThreadLocalTest.uncommonsMath_CellularAutomatonRNG               thrpt         5    54846,435     2411,245   ops/ms
+i.g.generatorsBenchmark.PoissonThreadLocalTest.uncommonsMath_MersenneTwisterRNG                 thrpt         5    44330,968     1398,101   ops/ms
+i.g.generatorsBenchmark.PoissonThreadLocalTest.unsafe_uncommonsMath_CellularAutomatonRNG        thrpt         5    85469,173     7040,945   ops/ms
+i.g.generatorsBenchmark.PoissonThreadLocalTest.unsafe_uncommonsMath_MersenneTwisterRNG          thrpt         5    81212,661     9925,990   ops/ms
 ```

@@ -17,6 +17,8 @@ class ExponentialThreadLocalTest {
 
   val UnsafeCellularAutomatonRNGGenerator = new ExponentialGenerator(Global.RATE, new UnsafeCellularAutomatonRNG)
 
+  val UnsafeXORShiftRNGGenerator = new ExponentialGenerator(Global.RATE, new UnsafeXORShiftRNG)
+
   @GenerateMicroBenchmark
   def commonsMath() = CommonsMathGenerator.sample()
 
@@ -31,4 +33,7 @@ class ExponentialThreadLocalTest {
 
   @GenerateMicroBenchmark
   def unsafe_uncommonsMath_CellularAutomatonRNG() = UnsafeCellularAutomatonRNGGenerator.nextValue()
+
+  @GenerateMicroBenchmark
+  def unsafe_uncommonsMath_XORShiftRNG() = UnsafeXORShiftRNGGenerator.nextValue()
 }

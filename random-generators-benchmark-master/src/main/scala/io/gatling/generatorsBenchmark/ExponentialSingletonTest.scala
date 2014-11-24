@@ -1,21 +1,23 @@
 package io.gatling.generatorsBenchmark
 
 import org.apache.commons.math3.distribution.ExponentialDistribution
-import org.uncommons.maths.random.{CellularAutomatonRNG, MersenneTwisterRNG, ExponentialGenerator}
+import org.uncommons.maths.random.{XORShiftRNG, CellularAutomatonRNG, MersenneTwisterRNG, ExponentialGenerator}
 import org.openjdk.jmh.annotations.GenerateMicroBenchmark
 
-object SingletonTest {
+object ExponentialSingletonTest {
 
   val CommonsMathGenerator = new ExponentialDistribution(Global.MEAN)
 
   val MersenneTwisterRNGGenerator = new ExponentialGenerator(Global.RATE, new MersenneTwisterRNG)
 
   val CellularAutomatonRNGGenerator = new ExponentialGenerator(Global.RATE, new CellularAutomatonRNG)
+
+  val XORShiftRNGGenerator = new ExponentialGenerator(Global.RATE, new XORShiftRNG)
 }
 
-class SingletonTest {
+class ExponentialSingletonTest {
 
-  import SingletonTest._
+  import ExponentialSingletonTest._
 
   @GenerateMicroBenchmark
   def commonsMath() = CommonsMathGenerator.sample()
@@ -25,4 +27,7 @@ class SingletonTest {
 
   @GenerateMicroBenchmark
   def uncommonsMath_CellularAutomatonRNG() = CellularAutomatonRNGGenerator.nextValue()
+
+  @GenerateMicroBenchmark
+  def uncommonsMath_XORShiftRNG() = XORShiftRNGGenerator.nextValue()
 }

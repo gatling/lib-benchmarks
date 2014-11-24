@@ -15,10 +15,10 @@ import com.ximpleware.AutoPilot;
 import com.ximpleware.VTDGen;
 import com.ximpleware.VTDNav;
 
-@OutputTimeUnit(TimeUnit.SECONDS)
-public class VtdXmlBenchmark extends AbstractXPathBenchmark {
+/*@OutputTimeUnit(TimeUnit.SECONDS)*/
+public class VtdXmlBenchmark /*extends AbstractXPathBenchmark*/ {
 
-	@Override
+/*	@Override
 	protected String parse(InputSource inputSource, String path) throws Exception {
 		return null;
 	}
@@ -70,13 +70,13 @@ public class VtdXmlBenchmark extends AbstractXPathBenchmark {
 	}
 
 	@Benchmark
-	public Object parseByBytes(ThreadState state) throws Exception {
-		int i = state.next();
+	public Object parseByBytes(RoundRobin rb) throws Exception {
+		int i = rb.next();
 		
 		Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
 		byte[][] chunks = c.left;
 		String path = c.right;
 		
 		return parse(merge(chunks), path);
-	}
+	}*/
 }

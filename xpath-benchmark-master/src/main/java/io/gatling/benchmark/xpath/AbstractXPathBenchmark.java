@@ -19,7 +19,7 @@ import org.xml.sax.InputSource;
 public abstract class AbstractXPathBenchmark {
 
 	@State(Scope.Thread)
-	public static class ThreadState {
+	public static class RoundRobin {
 		private int i = -1;
 
 		public int next() {
@@ -33,8 +33,8 @@ public abstract class AbstractXPathBenchmark {
 	protected abstract String parse(InputSource inputSource, String path) throws Exception;
 
 	@Benchmark
-	public String parseByString(ThreadState state) throws Exception {
-		int i = state.next();
+	public String parseByString(RoundRobin rb) throws Exception {
+		int i = rb.next();
 
 		Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
 		byte[][] chunks = c.left;
@@ -46,8 +46,8 @@ public abstract class AbstractXPathBenchmark {
 	}
 
   @Benchmark
-  public String parseByFastStringReader(ThreadState state) throws Exception {
-    int i = state.next();
+  public String parseByFastStringReader(RoundRobin rb) throws Exception {
+    int i = rb.next();
 
     Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
     byte[][] chunks = c.left;
@@ -59,8 +59,8 @@ public abstract class AbstractXPathBenchmark {
   }
 
   @Benchmark
-  public String parseByFastCharArrayReader(ThreadState state) throws Exception {
-    int i = state.next();
+  public String parseByFastCharArrayReader(RoundRobin rb) throws Exception {
+    int i = rb.next();
 
     Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
     byte[][] chunks = c.left;
@@ -72,8 +72,8 @@ public abstract class AbstractXPathBenchmark {
   }
 
 	@Benchmark
-	public String parseByInputStreamReader(ThreadState state) throws Exception {
-		int i = state.next();
+	public String parseByInputStreamReader(RoundRobin rb) throws Exception {
+		int i = rb.next();
 
 		Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
 		byte[][] chunks = c.left;
@@ -84,8 +84,8 @@ public abstract class AbstractXPathBenchmark {
 	}
 
 	@Benchmark
-	public String parseByInputStream(ThreadState state) throws Exception {
-		int i = state.next();
+	public String parseByInputStream(RoundRobin rb) throws Exception {
+		int i = rb.next();
 
 		Couple<byte[][], String> c = BYTES_AND_PATHS.get(i);
 		byte[][] chunks = c.left;
