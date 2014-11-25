@@ -189,11 +189,11 @@ public class Bytes {
 
   static {
     Map<byte[][], String[]> map = new LinkedHashMap<>();
-//    addGoessner(map);
-//    addWebxml(map);
-//    addTwitter(map);
-//    add20K(map);
-    addCitm(map);
+    addGoessner(map);
+    addWebxml(map);
+    addTwitter(map);
+    add20K(map);
+//    addCitm(map);
 
     for (Entry<byte[][], String[]> entry : map.entrySet()) {
       for (String path : entry.getValue()) {

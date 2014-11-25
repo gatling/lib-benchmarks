@@ -29,67 +29,57 @@ Run with `java -jar target/microbenchmarks.jar ".*" -wi 2 -i 10 -f 2 -t 8`
 Here are the results on my machine:
 
 * OS X 10.9
-* Hotspot 1.7.0_60
+* Hotspot 1.7.0_65
 * Intel Core i7 2,7 GHz
 
 ## Mixed samples (all but ctim)
 
-Benchmark                                        Mode  Samples       Score  Score error  Units
-GatlingBoonFastLazyChopBenchmark.parseChars     thrpt       20  184289,310     5269,533  ops/s
-GatlingBoonFastLazyChopBenchmark.parseStream    thrpt       20  148869,384     2775,139  ops/s
-GatlingJacksonBenchmark.parseStream             thrpt       20  105902,449     3332,773  ops/s
-GatlingJacksonBenchmark.parseBytes              thrpt       20  101674,842     5143,923  ops/s
-GatlingJoddBenchmark.parseString                thrpt       20   96152,298     6603,967  ops/s
-GatlingJacksonBenchmark.parseString             thrpt       20   85305,160     3822,595  ops/s
-JaywayJacksonBenchmark.parseBytes               thrpt       20   62418,382    17195,339  ops/s
-JaywayJacksonBenchmark.parseStream              thrpt       20   67342,448    17061,375  ops/s
-JaywayJacksonBenchmark.parseString              thrpt       20   58170,730    13918,157  ops/s
-
-GatlingBoonFastLazyChopBenchmark.parseChars     thrpt       20  151759,496 ±  9615,281  ops/s
-GatlingBoonFastLazyChopBenchmark.parseStream    thrpt       20  126040,155 ±  9250,885  ops/s
-GatlingJoddBenchmark.parseString                thrpt       20   91008,957 ±  5582,236  ops/s
-GatlingJacksonBenchmark.parseBytes              thrpt       20   85816,845 ±  5950,653  ops/s
-GatlingJacksonBenchmark.parseStream             thrpt       20   85292,633 ±  7269,367  ops/s
-GatlingJacksonBenchmark.parseString             thrpt       20   73461,003 ±  4818,952  ops/s
-JaywayJacksonBenchmark.parseBytes               thrpt       20   56592,735 ± 14798,225  ops/s
-JaywayJacksonBenchmark.parseStream              thrpt       20   57595,191 ± 13377,361  ops/s
-JaywayJacksonBenchmark.parseString              thrpt       20   50246,417 ± 12202,117  ops/s
+Benchmark                                        Mode  Samples       Score       Error  Units
+GatlingBoonFastLazyChopBenchmark.parseChars     thrpt       20  186118,674 ±  8357,490  ops/s
+GatlingBoonFastLazyChopBenchmark.parseStream    thrpt       20  149394,796 ±  2365,071  ops/s
+GatlingJacksonBenchmark.parseStream             thrpt       20  109691,835 ±  5683,142  ops/s
+GatlingJacksonBenchmark.parseBytes              thrpt       20  106180,395 ±  5654,098  ops/s
+GatlingJoddBenchmark.parseString                thrpt       20   93009,909 ± 13214,936  ops/s
+GatlingJacksonBenchmark.parseString             thrpt       20   87243,259 ±  4497,959  ops/s
+JaywayJacksonBenchmark.parseStream              thrpt       20   57914,202 ± 20378,925  ops/s
+JaywayJacksonBenchmark.parseBytes               thrpt       20   56370,944 ± 20854,934  ops/s
+JaywayJacksonBenchmark.parseString              thrpt       20   49825,720 ± 15457,201  ops/s
 
 ## 20k sample only
 
-Benchmark                                        Mode  Samples      Score  Score error  Units
-GatlingBoonFastLazyChopBenchmark.parseChars     thrpt       20  47206,747     2820,638  ops/s
-GatlingBoonFastLazyChopBenchmark.parseStream    thrpt       20  40514,236     1587,758  ops/s
-GatlingJacksonBenchmark.parseBytes              thrpt       20  31601,104     2345,976  ops/s
-GatlingJoddBenchmark.parseString                thrpt       20  31586,681     1499,591  ops/s
-GatlingJacksonBenchmark.parseStream             thrpt       20  31826,711     1388,085  ops/s
-GatlingJacksonBenchmark.parseString             thrpt       20  27038,277      483,240  ops/s
-JaywayJacksonBenchmark.parseBytes               thrpt       20  20676,328     1476,609  ops/s
-JaywayJacksonBenchmark.parseStream              thrpt       20  20596,809     1943,183  ops/s
-JaywayJacksonBenchmark.parseString              thrpt       20  17863,194     1094,422  ops/s
+Benchmark                                        Mode  Samples      Score      Error  Units
+GatlingBoonFastLazyChopBenchmark.parseChars     thrpt       20  49240,095 ± 3879,274  ops/s
+GatlingBoonFastLazyChopBenchmark.parseStream    thrpt       20  41307,542 ± 1561,146  ops/s
+GatlingJacksonBenchmark.parseStream             thrpt       20  34963,083 ± 1011,595  ops/s
+GatlingJacksonBenchmark.parseBytes              thrpt       20  34243,066 ±  763,881  ops/s
+GatlingJoddBenchmark.parseString                thrpt       20  33115,194 ±  713,440  ops/s
+GatlingJacksonBenchmark.parseString             thrpt       20  27478,888 ±  652,178  ops/s
+JaywayJacksonBenchmark.parseBytes               thrpt       20  18510,730 ±  910,777  ops/s
+JaywayJacksonBenchmark.parseStream              thrpt       20  18420,036 ± 1096,330  ops/s
+JaywayJacksonBenchmark.parseString              thrpt       20  14079,054 ± 1562,821  ops/s
 
 ## Goessner sample only
 
-Benchmark                                        Mode  Samples        Score  Score error  Units
-GatlingBoonFastLazyChopBenchmark.parseChars     thrpt       20  1105703,871    67837,778  ops/s
-GatlingJoddBenchmark.parseString                thrpt       20   802629,303    33630,235  ops/s
-GatlingJacksonBenchmark.parseStream             thrpt       20   767863,298    28280,391  ops/s
-GatlingJacksonBenchmark.parseBytes              thrpt       20   760720,580    27704,993  ops/s
-GatlingBoonFastLazyChopBenchmark.parseStream    thrpt       20   706117,120    12323,651  ops/s
-GatlingJacksonBenchmark.parseString             thrpt       20   589345,772    26923,026  ops/s
-JaywayJacksonBenchmark.parseBytes               thrpt       20   277781,276    88454,873  ops/s
-JaywayJacksonBenchmark.parseStream              thrpt       20   258522,487    98043,685  ops/s
-JaywayJacksonBenchmark.parseString              thrpt       20   223120,663    89493,964  ops/s
+Benchmark                                        Mode  Samples        Score        Error  Units
+GatlingBoonFastLazyChopBenchmark.parseChars     thrpt       20  1102470,690 ± 102015,222  ops/s
+GatlingJoddBenchmark.parseString                thrpt       20   856405,758 ±  17234,631  ops/s
+GatlingJacksonBenchmark.parseBytes              thrpt       20   770826,821 ±  40780,630  ops/s
+GatlingJacksonBenchmark.parseStream             thrpt       20   765414,049 ±  34291,891  ops/s
+GatlingBoonFastLazyChopBenchmark.parseStream    thrpt       20   651946,978 ±  20706,239  ops/s
+GatlingJacksonBenchmark.parseString             thrpt       20   628141,745 ±  12684,409  ops/s
+JaywayJacksonBenchmark.parseStream              thrpt       20   387636,226 ±  56901,300  ops/s
+JaywayJacksonBenchmark.parseBytes               thrpt       20   386902,239 ±  55626,744  ops/s
+JaywayJacksonBenchmark.parseString              thrpt       20   354256,512 ±  34778,270  ops/s
 
 ## ctim sample only
 
-Benchmark                                        Mode  Samples    Score  Score error  Units
-GatlingJacksonBenchmark.parseStream             thrpt       20  574,645       22,270  ops/s
-GatlingJacksonBenchmark.parseBytes              thrpt       20  541,050       19,288  ops/s
-JaywayJacksonBenchmark.parseStream              thrpt       20  533,120       32,594  ops/s
-JaywayJacksonBenchmark.parseBytes               thrpt       20  508,366       27,050  ops/s
-GatlingBoonFastLazyChopBenchmark.parseStream    thrpt       20  438,639       30,258  ops/s
-GatlingBoonFastLazyChopBenchmark.parseChars     thrpt       20  348,732       23,221  ops/s
-GatlingJacksonBenchmark.parseString             thrpt       20  286,069       13,453  ops/s
-GatlingJoddBenchmark.parseString                thrpt       20  280,345       13,446  ops/s
-JaywayJacksonBenchmark.parseString              thrpt       20  269,781        9,688  ops/s
+Benchmark                                        Mode  Samples    Score    Error  Units
+GatlingJacksonBenchmark.parseStream             thrpt       20  694,064 ± 20,722  ops/s
+JaywayJacksonBenchmark.parseStream              thrpt       20  674,110 ± 21,421  ops/s
+GatlingJacksonBenchmark.parseBytes              thrpt       20  649,871 ± 20,108  ops/s
+JaywayJacksonBenchmark.parseBytes               thrpt       20  641,111 ± 19,798  ops/s
+GatlingBoonFastLazyChopBenchmark.parseStream    thrpt       20  458,567 ± 31,940  ops/s
+GatlingBoonFastLazyChopBenchmark.parseChars     thrpt       20  349,869 ±  9,805  ops/s
+GatlingJacksonBenchmark.parseString             thrpt       20  318,317 ± 10,975  ops/s
+GatlingJoddBenchmark.parseString                thrpt       20  315,294 ± 10,633  ops/s
+JaywayJacksonBenchmark.parseString              thrpt       20  300,458 ±  9,581  ops/s
