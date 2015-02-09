@@ -29,7 +29,7 @@ Run with `java -jar target/microbenchmarks.jar ".*" -wi 2 -i 10 -f 2 -t 8`
 Here are the results on my machine:
 
 * OS X 10.9
-* Hotspot 1.7.0_65
+* Hotspot 1.7.0_75
 * Intel Core i7 2,7 GHz
 
 ## Mixed samples (all but ctim)
