@@ -23,7 +23,10 @@ Here are the results on my machine:
 * Intel Core i7 2,7 GHz
 
 Benchmark                                Mode  Samples     Score  Score error  Units
-RegexBenchmark.parseFastCharSequence    thrpt       20  3338,679      242,787  ops/s
-RegexBenchmark.parseString              thrpt       20  3129,795      240,864  ops/s
-RegexBenchmark.parseCharBuffer          thrpt       20  2949,361      184,103  ops/s
-RegexBenchmark.parseScanner             thrpt       20  1188,431       29,098  ops/s
+Re2jBenchmark.parseCharBuffer         thrpt   20  3789,525 ± 267,544  ops/s
+Re2jBenchmark.parseString             thrpt   20  3436,392 ± 352,982  ops/s
+RegexBenchmark.parseFastCharSequence  thrpt   20  3301,876 ± 278,736  ops/s
+Re2jBenchmark.parseFastCharSequence   thrpt   20  3268,785 ± 353,488  ops/s
+RegexBenchmark.parseString            thrpt   20  3088,014 ± 406,660  ops/s
+RegexBenchmark.parseCharBuffer        thrpt   20  3029,533 ± 240,580  ops/s
+RegexBenchmark.parseScanner           thrpt   20  1144,058 ± 101,752  ops/s
