@@ -10,7 +10,7 @@ Paths are precompiled as it's the use case for Gatling (they are cached)
 
 ## tl;dr
 
-* Gatling implementation is faster than Jayway. On reasonable file sizes where JSON parsing is not the overwhelming bottleneck, it can be 40% faster (both running w/ Jackson)
+* Gatling implementation is faster than Jayway. On reasonable file sizes where JSON parsing is not the overwhelming bottleneck, it can be 70% faster (both running w/ Jackson)
 * For reasonable sizes (~ less than 1Mb):
   * it's more efficient to build the full byte array and decode it than use an InputStream over the chunks.
   * Boon parsers are faster and the FastLazyChop one is the fastest of all
@@ -35,18 +35,18 @@ Here are the results on my machine:
 ## Mixed samples (all but ctim)
 
 Benchmark                                      Mode  Cnt       Score       Error  Units
-GatlingBoonFastLazyChopBenchmark.parseChars   thrpt   20  170932,487 ± 10471,818  ops/s
-GatlingBoonFastLazyChopBenchmark.parseStream  thrpt   20  135411,386 ±  7400,082  ops/s
-GatlingJacksonJrBenchmark.parseStream         thrpt   20  112391,858 ±  1871,211  ops/s
-GatlingJacksonJrBenchmark.parseBytes          thrpt   20  110466,140 ±  3397,768  ops/s
-GatlingJacksonBenchmark.parseStream           thrpt   20  104192,549 ±  2475,379  ops/s
-GatlingJoddBenchmark.parseString              thrpt   20   96114,594 ±  2991,759  ops/s
-GatlingJacksonBenchmark.parseBytes            thrpt   20   93344,542 ±  9706,644  ops/s
-GatlingJacksonJrBenchmark.parseString         thrpt   20   86203,900 ±  4111,741  ops/s
-GatlingJacksonBenchmark.parseString           thrpt   20   82772,237 ±  2145,928  ops/s
-JaywayJacksonBenchmark.parseStream            thrpt   20   53049,505 ± 19465,601  ops/s
-JaywayJacksonBenchmark.parseBytes             thrpt   20   51477,341 ± 21003,970  ops/s
-JaywayJacksonBenchmark.parseString            thrpt   20   44873,085 ± 17821,916  ops/s
+GatlingBoonFastLazyChopBenchmark.parseChars   thrpt   20  175925,245 ±  6848,515  ops/s
+GatlingBoonFastLazyChopBenchmark.parseStream  thrpt   20  140395,912 ±  4601,369  ops/s
+GatlingJacksonJrBenchmark.parseStream         thrpt   20  129662,567 ±  2890,147  ops/s
+GatlingJacksonJrBenchmark.parseBytes          thrpt   20  122279,945 ±  2106,786  ops/s
+GatlingJacksonBenchmark.parseStream           thrpt   20  112252,580 ±  2942,670  ops/s
+GatlingJoddBenchmark.parseString              thrpt   20  110928,102 ±  2383,912  ops/s
+GatlingJacksonBenchmark.parseBytes            thrpt   20  109650,782 ±  2091,213  ops/s
+GatlingJacksonJrBenchmark.parseString         thrpt   20   93752,620 ±  2854,156  ops/s
+GatlingJacksonBenchmark.parseString           thrpt   20   88281,889 ±  1704,125  ops/s
+JaywayJacksonBenchmark.parseStream            thrpt   20   74654,851 ± 11851,624  ops/s
+JaywayJacksonBenchmark.parseBytes             thrpt   20   69368,297 ± 14337,075  ops/s
+JaywayJacksonBenchmark.parseString            thrpt   20   61026,567 ±  7671,007  ops/s
 
 ## 20k sample only
 
