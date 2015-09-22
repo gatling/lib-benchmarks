@@ -1,20 +1,20 @@
 package io.gatling.benchmark.jsonpath;
 
-import static io.gatling.benchmark.jsonpath.GatlingJacksonBenchmark.*;
+import io.advantageous.boon.json.implementation.JsonFastParser;
 import io.gatling.benchmark.util.UnsafeUtil;
-
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.concurrent.TimeUnit;
-
-import org.boon.json.implementation.JsonFastParser;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.TimeUnit;
+
+import static io.gatling.benchmark.jsonpath.GatlingJacksonBenchmark.BYTES_AND_JSONPATHS;
+
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class GatlingBoonFastLazyChopBenchmark {
+public class GatlingNewBoonFastLazyChopBenchmark {
 
 	@State(Scope.Thread)
 	public static class ThreadState {
