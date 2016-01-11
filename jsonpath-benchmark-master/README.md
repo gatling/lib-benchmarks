@@ -28,12 +28,13 @@ Run with `java -jar target/microbenchmarks.jar ".*" -wi 2 -i 10 -f 2 -t 8`
 
 Here are the results on my machine:
 
-* OS X 10.9
-* Hotspot 1.7.0_75
+* OS X 10.11.1
+* Hotspot 1.8.0_66
 * Intel Core i7 2,7 GHz
 
 ## Mixed samples (all but ctim)
 
+```
 Benchmark                                      Mode  Cnt       Score       Error  Units
 GatlingBoonFastLazyChopBenchmark.parseChars   thrpt   20  180661.522 ±  8500.813  ops/s
 GatlingBoonFastLazyChopBenchmark.parseStream  thrpt   20  139055.540 ±  5769.841  ops/s
@@ -86,3 +87,4 @@ GatlingBoonFastLazyChopBenchmark.parseChars     thrpt       20  349,869 ±  9,80
 GatlingJacksonBenchmark.parseString             thrpt       20  318,317 ± 10,975  ops/s
 GatlingJoddBenchmark.parseString                thrpt       20  315,294 ± 10,633  ops/s
 JaywayJacksonBenchmark.parseString              thrpt       20  300,458 ±  9,581  ops/s
+```
