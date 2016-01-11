@@ -1,22 +1,21 @@
 package io.gatling.benchmark.xpath;
 
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import org.w3c.dom.Document;
+import org.xml.sax.InputSource;
 
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
-import org.w3c.dom.Document;
-import org.xml.sax.InputSource;
-
-public class XalanBenchmark extends AbstractXPathBenchmark {
+public class JdkBenchmark extends AbstractXPathBenchmark {
 
     static {
         System.setProperty("org.apache.xml.dtm.DTMManager", "org.apache.xml.dtm.ref.DTMManagerDefault");
         System.setProperty("com.sun.org.apache.xml.internal.dtm.DTMManager", "com.sun.org.apache.xml.internal.dtm.ref.DTMManagerDefault");
-        System.setProperty("javax.xml.xpath.XPathFactory", "org.apache.xpath.jaxp.XPathFactoryImpl");
+        System.setProperty("javax.xml.xpath.XPathFactory", "com.sun.org.apache.xpath.internal.jaxp.XPathFactoryImpl");
     }
 
     public static final ThreadLocal<XPathFactory> XPATH_FACTORY = new ThreadLocal<XPathFactory>() {

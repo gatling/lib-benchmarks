@@ -1,46 +1,29 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>io.gatling.benchmark</groupId>
-	<artifactId>xpath-benchmark</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>io.gatling.benchmark</groupId>
+    <artifactId>xpath-benchmark</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
 
-	<distributionManagement>
-		<repository>
-			<id>excilys-release</id>
-			<url>http://repository.excilys.com/content/repositories/releases</url>
-		</repository>
-	</distributionManagement>
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-	<properties>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
-		<jaxen.version>1.1.6</jaxen.version>
-		<xerces.version>2.11.0</xerces.version>
-		<xalan.version>2.7.1</xalan.version>
-		<saxon.version>9.6.0-1</saxon.version>
-		<vtd-xml.version>2.11</vtd-xml.version>
-		<slf4j.version>1.7.7</slf4j.version>
-		<logback.version>1.1.2</logback.version>
-		<jmh.version>1.3.1</jmh.version>
-		<commons-io.version>2.4</commons-io.version>
-	</properties>
+        <jaxen.version>1.1.6</jaxen.version>
+        <xerces.version>2.11.0</xerces.version>
+        <xalan.version>2.7.2</xalan.version>
+        <saxon.version>9.7.0-1</saxon.version>
+        <vtd-xml.version>2.11</vtd-xml.version>
+        <slf4j.version>1.7.13</slf4j.version>
+        <logback.version>1.1.3</logback.version>
+        <commons-io.version>2.4</commons-io.version>
 
-	<repositories>
-		<repository>
-			<id>excilys</id>
-			<name>Excilys Repository</name>
-			<url>http://repository.excilys.com/content/groups/public</url>
-			<releases>
-				<updatePolicy>never</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
+        <jmh.version>1.11.2</jmh.version>
+        <jmh.generator>default</jmh.generator>  <!-- or "asm", or "reflection" -->
+    </properties>
 
-	<dependencies>
+    <dependencies>
         <dependency>
             <groupId>org.openjdk.jmh</groupId>
             <artifactId>jmh-core</artifactId>
@@ -54,83 +37,93 @@
             <scope>provided</scope>
         </dependency>
 
-		<dependency>
-			<groupId>xerces</groupId>
-			<artifactId>xercesImpl</artifactId>
-			<version>${xerces.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xercesImpl</artifactId>
+            <version>${xerces.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>jaxen</groupId>
-			<artifactId>jaxen</artifactId>
-			<version>${jaxen.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>${jaxen.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>xalan</groupId>
-			<artifactId>xalan</artifactId>
-			<version>${xalan.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>xalan</groupId>
+            <artifactId>xalan</artifactId>
+            <version>${xalan.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>net.sf.saxon</groupId>
-			<artifactId>Saxon-HE</artifactId>
-			<version>${saxon.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+            <version>${saxon.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>com.ximpleware</groupId>
-			<artifactId>vtd-xml</artifactId>
-			<version>${vtd-xml.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>com.ximpleware</groupId>
+            <artifactId>vtd-xml</artifactId>
+            <version>${vtd-xml.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>${slf4j.version}</version>
-		</dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
 
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>${logback.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>${commons-io.version}</version>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.0</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<finalName>microbenchmarks</finalName>
-							<transformers>
-								<transformer
-									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>org.openjdk.jmh.Main</mainClass>
-								</transformer>
-							</transformers>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>2.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>microbenchmarks</finalName>
+                            <transformers>
+                                <transformer
+                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>org.openjdk.jmh.Main</mainClass>
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

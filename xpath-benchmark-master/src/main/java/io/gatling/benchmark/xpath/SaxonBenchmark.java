@@ -23,33 +23,40 @@ public class SaxonBenchmark extends AbstractXPathBenchmark {
 
 	private static final Processor SAXON_PROCESSOR = new Processor(false);
 
-	private static final DocumentBuilder SAXON_DOCUMENT_BUILER = SAXON_PROCESSOR.newDocumentBuilder();
+	private static final DocumentBuilder SAXON_DOCUMENT_BUILDER = SAXON_PROCESSOR.newDocumentBuilder();
+
+	// FIXME, if we were using namespaces, we'd have to have one XPathCompiler per namespace list
+	private static final XPathCompiler xPathCompiler = SAXON_PROCESSOR.newXPathCompiler(); // namespaces
 
 	private static final Map<String, ThreadLocal<XPathSelector>> SAXON_XPATH_SELECTORS = new ConcurrentHashMap<String, ThreadLocal<XPathSelector>>();
 
-	protected String parse(InputSource inputSource, final String path) throws Exception {
-		final XPathCompiler xPathCompiler = SAXON_PROCESSOR.newXPathCompiler(); // namespaces
+
+	private XPathSelector getSelector(final String path) {
 		ThreadLocal<XPathSelector> xPathSelectorTL = SAXON_XPATH_SELECTORS.get(path);
 		if (xPathSelectorTL == null) {
-			xPathSelectorTL = new ThreadLocal<XPathSelector>() {
-				@Override
-				protected XPathSelector initialValue() {
-					try {
-						XPathExecutable xPathExecutable = xPathCompiler.compile(path);
-						return xPathExecutable.load(); // not threadsafe but
-						                               // reusable
-					} catch (SaxonApiException e) {
-						throw new ExceptionInInitializerError(e);
+			xPathSelectorTL = SAXON_XPATH_SELECTORS.computeIfAbsent(path, p ->
+				new ThreadLocal<XPathSelector>() {
+					@Override
+					protected XPathSelector initialValue() {
+						try {
+							XPathExecutable xPathExecutable = xPathCompiler.compile(path);
+							return xPathExecutable.load(); // not threadsafe but reusable
+						} catch (SaxonApiException e) {
+							throw new ExceptionInInitializerError(e);
+						}
 					}
 				}
-			};
-			SAXON_XPATH_SELECTORS.put(path, xPathSelectorTL);
+			);
 		}
+		return xPathSelectorTL.get();
+	}
+
+	protected String parse(InputSource inputSource, final String path) throws Exception {
 
 		Source source = new SAXSource(inputSource);
-		XdmNode xdmNode = SAXON_DOCUMENT_BUILER.build(source);
+		XdmNode xdmNode = SAXON_DOCUMENT_BUILDER.build(source);
 
-		XPathSelector xPathSelector = xPathSelectorTL.get();
+		XPathSelector xPathSelector = getSelector(path);
 		try {
 			xPathSelector.setContextItem(xdmNode);
 			XdmValue xdmValue = xPathSelector.evaluate();
