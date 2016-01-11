@@ -10,20 +10,21 @@
 	<name>JsonPath JVM implementations benchmark</name>
 
 	<properties>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<jmh.version>1.11</jmh.version>
-		<jayway.version>2.0.0</jayway.version>
-		<gatling-jsonpath.version>0.6.3</gatling-jsonpath.version>
-		<jackson2.version>2.6.2</jackson2.version>
+		<jmh.version>1.11.2</jmh.version>
+		<jayway.version>2.1.0</jayway.version>
+		<gatling-jsonpath.version>0.6.4</gatling-jsonpath.version>
+		<jackson2.version>2.7.0-rc3</jackson2.version>
 		<old-boon.version>0.33</old-boon.version>
-		<new-boon.version>0.5.6-RC1</new-boon.version>
-		<slf4j.version>1.7.12</slf4j.version>
+		<new-boon.version>0.5.6.RELEASE </new-boon.version>
+		<slf4j.version>1.7.13</slf4j.version>
 		<logback.version>1.1.3</logback.version>
 		<commons-io.version>2.4</commons-io.version>
-        <jodd.version>3.6.6</jodd.version>
+        <jodd.version>3.6.7</jodd.version>
+		<json-io.version>4.3.0</json-io.version>
 	</properties>
 
 	<dependencies>
@@ -47,7 +48,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.github.advantageous</groupId>
+			<groupId>io.advantageous.boon</groupId>
 			<artifactId>boon-json</artifactId>
 			<version>${new-boon.version}</version>
 		</dependency>
@@ -75,6 +76,12 @@
             <artifactId>jackson-jr-objects</artifactId>
             <version>${jackson2.version}</version>
         </dependency>
+
+		<dependency>
+			<groupId>com.cedarsoftware</groupId>
+			<artifactId>json-io</artifactId>
+			<version>${json-io.version}</version>
+		</dependency>
 
         <dependency>
             <groupId>org.jodd</groupId>
