@@ -24,6 +24,7 @@ Here are the results on my machine:
 * Hotspot 1.7.0_45
 * Intel Core i7 2,7 GHz
 
+```
 Benchmark                                   Mode  Cnt      Score       Error  Units
 SaxonBenchmark.parseByInputStream          thrpt   20  44484.272 ±  5531.686  ops/s
 SaxonBenchmark.parseByFastStringReader     thrpt   20  43485.904 ±  8064.646  ops/s
@@ -45,3 +46,4 @@ JdkBenchmark.parseByInputStreamReader      thrpt   20  25132.670 ±  3795.600  o
 JdkBenchmark.parseByInputStream            thrpt   20  24680.044 ±  5023.568  ops/s
 JdkBenchmark.parseByString                 thrpt   20  24804.053 ±  5354.838  ops/s
 XalanBenchmark.parseByInputStream          thrpt   20  23770.958 ±  5388.873  ops/s
+```
