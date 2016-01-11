@@ -35,36 +35,42 @@ import java.util.concurrent.TimeUnit;
 import org.jsoup.helper.MissingFeatures;
 import org.jsoup.nodes.Document;
 import org.jsoup.parser.Parser;
+import org.jsoup.select.Evaluator;
+import org.jsoup.select.Evaluators;
+import org.jsoup.select.Selector;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 
 @OutputTimeUnit(TimeUnit.SECONDS)
 public class JsoupBenchmark {
 
-  private Object parseString(byte[] bytes, String selector) throws Exception {
-    String text = new String(bytes, StandardCharsets.UTF_8);
-    Document doc = Parser.parse(text, "http://gatling-tool.org");
-    return doc.select(selector);
+  private static final Evaluator PRECOMPILED_SELECTORS1 = Evaluators.evaluator(SELECTOR1);
+  private static final Evaluator PRECOMPILED_SELECTORS2 = Evaluators.evaluator(SELECTOR2);
+  private static final Evaluator[] ALL_PRECOMPILED_SELECTORS = { PRECOMPILED_SELECTORS1, PRECOMPILED_SELECTORS2 };
+
+  private Object parseStringPrecompiled(byte[] bytes, Evaluator evaluator) throws Exception {
+    Document doc = Parser.parse(new String(bytes, StandardCharsets.UTF_8), "http://gatling-tool.org");
+    return Selector.select(evaluator, doc);
   }
 
-  private Object parseStream(byte[] bytes, String selector) throws Exception {
+  private Object parseStreamPrecompiled(byte[] bytes, Evaluator evaluator) throws Exception {
     Document doc = MissingFeatures.load(ByteBuffer.wrap(bytes), "UTF-8", "http://gatling-tool.org");
-    return doc.select(selector);
+    return Selector.select(evaluator, doc);
   }
 
   @Benchmark
-  public Object parseStringRoundRobin(ThreadState state) throws Exception {
+  public Object parseStringPrecompiledRoundRobin(ThreadState state) throws Exception {
     int i = state.next();
     byte[] bytes = ALL_BYTES[i];
-    String selector = ALL_SELECTOR[i];
-    return parseString(bytes, selector);
+    Evaluator evaluator = ALL_PRECOMPILED_SELECTORS[i];
+    return parseStringPrecompiled(bytes, evaluator);
   }
 
   @Benchmark
-  public Object parseStreamRoundRobin(ThreadState state) throws Exception {
+  public Object parseStreamPrecompiledRoundRobin(ThreadState state) throws Exception {
     int i = state.next();
     byte[] bytes = ALL_BYTES[i];
-    String selector = ALL_SELECTOR[i];
-    return parseStream(bytes, selector);
+    Evaluator evaluator = ALL_PRECOMPILED_SELECTORS[i];
+    return parseStreamPrecompiled(bytes, evaluator);
   }
 }

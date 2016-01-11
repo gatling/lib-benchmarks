@@ -20,12 +20,12 @@ Run with `java -jar target/microbenchmarks.jar ".*" -wi 2 -i 10 -f 2 -t 8`
 
 Here are the results on my machine:
 
-* OS X 10.9.5
-* Hotspot 1.7.0_65
+* OS X 10.11.1
+* Hotspot 1.8.0_66
 * Intel Core i7 2,7 GHz
 
-Benchmark                                          Mode  Samples     Score     Error  Units
-JoddBenchmark.parseCharsPrecompiledRoundRobin     thrpt       20  5578,533 ± 275,616  ops/s
-JoddBenchmark.parseStringPrecompiledRoundRobin    thrpt       20  5311,143 ± 285,078  ops/s
-JsoupBenchmark.parseStringRoundRobin              thrpt       20  2363,258 ± 462,125  ops/s
-JsoupBenchmark.parseStreamRoundRobin              thrpt       20  2323,909 ± 577,873  ops/s
+Benchmark                                        Mode  Cnt     Score     Error  Units
+JoddBenchmark.parseStringPrecompiledRoundRobin  thrpt   20  6763.483 ± 193.008  ops/s
+JoddBenchmark.parseCharsPrecompiledRoundRobin   thrpt   20  6470.666 ± 526.220  ops/s
+JsoupBenchmark.parseStringPrecompiledRoundRobin thrpt   20  4106.197 ± 220.625  ops/s
+JsoupBenchmark.parseStreamPrecompiledRoundRobin thrpt   20  3837.760 ± 171.702  ops/s
