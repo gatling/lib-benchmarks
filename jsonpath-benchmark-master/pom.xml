@@ -14,17 +14,17 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<jmh.version>1.11.3</jmh.version>
+		<jmh.version>1.12</jmh.version>
 		<jayway.version>2.2.0</jayway.version>
-		<gatling-jsonpath.version>0.6.6</gatling-jsonpath.version>
-		<jackson.version>2.7.3</jackson.version>
-		<jacksonjr.version>2.7.3</jacksonjr.version>
+		<gatling-jsonpath.version>0.6.7</gatling-jsonpath.version>
+		<jackson.version>2.7.4</jackson.version>
+		<jacksonjr.version>2.7.4</jacksonjr.version>
 		<old-boon.version>0.33</old-boon.version>
-		<new-boon.version>0.5.7-RC1 </new-boon.version>
-		<slf4j.version>1.7.20</slf4j.version>
+		<new-boon.version>0.6.1 </new-boon.version>
+		<slf4j.version>1.7.21</slf4j.version>
 		<logback.version>1.1.7</logback.version>
 		<commons-io.version>2.4</commons-io.version>
-        <jodd.version>3.7</jodd.version>
+        <jodd.version>3.7.1</jodd.version>
 		<json-io.version>4.4.0</json-io.version>
 	</properties>
 
@@ -49,7 +49,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>io.gatling.advantageous.boon</groupId>
+			<groupId>io.advantageous.boon</groupId>
 			<artifactId>boon-json</artifactId>
 			<version>${new-boon.version}</version>
 		</dependency>

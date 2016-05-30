@@ -28,31 +28,30 @@ Run with `java -jar target/microbenchmarks.jar ".*" -wi 2 -i 10 -f 2 -t 8`
 
 Here are the results on my machine:
 
-* OS X 10.11.1
-* Hotspot 1.8.0_66
+* OS X 10.11.5
+* Hotspot 1.8.0_77
 * Intel Core i7 2,7 GHz
 
 ## Mixed samples (all but ctim)
 
 ```
-Benchmark                                      Mode  Cnt       Score       Error  Units
 Benchmark                                         Mode  Cnt       Score       Error  Units
-GatlingOldBoonFastLazyChopBenchmark.parseChars   thrpt   20  157364.596 ±  8666.518  ops/s
-GatlingNewBoonFastLazyChopBenchmark.parseChars   thrpt   20  150295.985 ± 11479.319  ops/s
-GatlingOldBoonFastLazyChopBenchmark.parseStream  thrpt   20  135662.230 ±  4481.269  ops/s
-GatlingNewBoonFastLazyChopBenchmark.parseStream  thrpt   20  126555.555 ±  9795.186  ops/s
-GatlingJacksonBenchmark.parseBytes               thrpt   20  118184.944 ±  9082.448  ops/s
-GatlingJacksonJrBenchmark.parseStream            thrpt   20  113348.505 ±  6605.904  ops/s
-GatlingJacksonJrBenchmark.parseBytes             thrpt   20  110845.932 ±  3539.937  ops/s
-GatlingJacksonBenchmark.parseStream              thrpt   20  110787.379 ±  5416.278  ops/s
-GatlingJoddBenchmark.parseString                 thrpt   20  101161.460 ±  3974.624  ops/s
-GatlingJacksonJrBenchmark.parseString            thrpt   20   88846.914 ±  2269.069  ops/s
-GatlingJacksonBenchmark.parseString              thrpt   20   85459.782 ±  7345.994  ops/s
-JaywayJacksonBenchmark.parseBytes                thrpt   20   58487.281 ± 12307.975  ops/s
-JaywayJacksonBenchmark.parseString               thrpt   20   56416.341 ±  9541.963  ops/s
-JaywayJacksonBenchmark.parseStream               thrpt   20   55286.836 ± 14106.186  ops/s
-GatlingJsonIoBenchmark.parseStream               thrpt   20   22524.634 ±  3143.396  ops/s
-GatlingJsonIoBenchmark.parseString               thrpt   20   20586.027 ±  2555.350  ops/s
+GatlingOldBoonFastLazyChopBenchmark.parseChars   thrpt   20  148252.012 ±  7768.381  ops/s
+GatlingNewBoonFastLazyChopBenchmark.parseChars   thrpt   20  146030.929 ±  6064.489  ops/s
+GatlingOldBoonFastLazyChopBenchmark.parseStream  thrpt   20  130402.427 ±  2259.572  ops/s
+GatlingNewBoonFastLazyChopBenchmark.parseStream  thrpt   20  124800.877 ±  4634.955  ops/s
+GatlingJacksonBenchmark.parseBytes               thrpt   20   98396.403 ±  9227.913  ops/s
+GatlingJacksonJrBenchmark.parseBytes             thrpt   20   98266.026 ±  3808.512  ops/s
+GatlingJacksonJrBenchmark.parseStream            thrpt   20   95707.494 ±  6332.600  ops/s
+GatlingJacksonBenchmark.parseStream              thrpt   20   91826.276 ±  6199.698  ops/s
+GatlingJoddBenchmark.parseString                 thrpt   20   91622.017 ±  3405.426  ops/s
+GatlingJacksonJrBenchmark.parseString            thrpt   20   78851.879 ±  1839.919  ops/s
+GatlingJacksonBenchmark.parseString              thrpt   20   71036.398 ±  7557.186  ops/s
+JaywayJacksonBenchmark.parseBytes                thrpt   20   55055.721 ± 13873.733  ops/s
+JaywayJacksonBenchmark.parseStream               thrpt   20   54463.155 ± 13176.090  ops/s
+JaywayJacksonBenchmark.parseString               thrpt   20   49006.429 ± 10019.588  ops/s
+GatlingJsonIoBenchmark.parseStream               thrpt   20   20897.278 ±  2358.273  ops/s
+GatlingJsonIoBenchmark.parseString               thrpt   20   19046.523 ±  2286.073  ops/s
 ```
 
 ## 20k sample only
