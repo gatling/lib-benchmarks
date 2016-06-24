@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 import static io.gatling.benchmark.jsonpath.GatlingJacksonBenchmark.BYTES_AND_JSONPATHS;
 
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class GatlingNewBoonFastLazyChopBenchmark {
+public class GatlingBoonFastLazyChopBenchmark {
 
 	@State(Scope.Thread)
 	public static class ThreadState {

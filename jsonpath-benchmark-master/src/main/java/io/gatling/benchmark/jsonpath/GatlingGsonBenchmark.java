@@ -1,6 +1,7 @@
 package io.gatling.benchmark.jsonpath;
 
-import com.fasterxml.jackson.jr.ob.JSON;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import io.gatling.jsonpath.JsonPath;
 import io.gatling.jsonpath.JsonPath$;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -9,13 +10,14 @@ import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 import static io.gatling.benchmark.jsonpath.Bytes.BYTES_AND_PATHS;
 
 @OutputTimeUnit(TimeUnit.SECONDS)
-public class GatlingJacksonJrBenchmark {
+public class GatlingGsonBenchmark {
 
 	public static final class BytesAndGatlingPath {
 		public final byte[][] chunks;
@@ -31,6 +33,8 @@ public class GatlingJacksonJrBenchmark {
 		return JsonPath$.MODULE$.compile(path).right().get();
 	}
 
+	private static final Gson GSON = new Gson();
+
 	public static final BytesAndGatlingPath[] BYTES_AND_JSONPATHS = new BytesAndGatlingPath[BYTES_AND_PATHS.size()];
 
 	static {
@@ -39,10 +43,6 @@ public class GatlingJacksonJrBenchmark {
 			BYTES_AND_JSONPATHS[i] = new BytesAndGatlingPath(bytesAndPath.left, compile(bytesAndPath.right));
 		}
 	}
-
-  private static final JSON JSON_JR = JSON.std
-    .without(JSON.Feature.HANDLE_JAVA_BEANS)
-    .with(JSON.Feature.READ_ONLY);
 
 	@State(Scope.Thread)
 	public static class ThreadState {
@@ -61,21 +61,14 @@ public class GatlingJacksonJrBenchmark {
 		int i = state.next();
 		byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
 		String text = new String(bytes, StandardCharsets.UTF_8);
-		return BYTES_AND_JSONPATHS[i].path.query(JSON_JR.anyFrom(text));
-	}
-
-	@Benchmark
-	public Object parseBytes(ThreadState state) throws Exception {
-		int i = state.next();
-		byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
-		return BYTES_AND_JSONPATHS[i].path.query(JSON_JR.anyFrom(bytes));
+		return BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(text, Object.class));
 	}
 
 	@Benchmark
 	public Object parseStream(ThreadState state) throws Exception {
 		int i = state.next();
 		InputStream stream = Bytes.stream(BYTES_AND_JSONPATHS[i].chunks);
-		return BYTES_AND_JSONPATHS[i].path.query(JSON_JR.anyFrom(stream));
+		return BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(new JsonReader(new InputStreamReader(stream, StandardCharsets.UTF_8)), Object.class));
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -83,7 +76,7 @@ public class GatlingJacksonJrBenchmark {
 		for (int i = 0; i < BYTES_AND_JSONPATHS.length; i++) {
 			byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
 			String text = new String(bytes, StandardCharsets.UTF_8);
-			Object result = BYTES_AND_JSONPATHS[i].path.query(JSON_JR.anyFrom(text));
+			Object result = BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(text, Object.class));
 			System.err.println(result);
 		}
 	}

@@ -113,7 +113,7 @@ public class Bytes {
 
   private static final byte[][] split(byte[] full) {
 
-    int chunkNumber = (int) Math.ceil(full.length / 2048.0);
+    int chunkNumber = (int) Math.ceil(full.length / 1500.0);
     byte[][] chunks = new byte[chunkNumber][];
 
     int start = 0;
@@ -121,7 +121,7 @@ public class Bytes {
 
     while (start < full.length) {
 
-      int length = Math.min(full.length - start, 2048);
+      int length = Math.min(full.length - start, 1500);
       byte[] chunk = new byte[length];
       System.arraycopy(full, start, chunk, 0, length);
       chunks[chunkCount] = chunk;
