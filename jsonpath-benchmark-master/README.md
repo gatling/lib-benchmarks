@@ -30,6 +30,7 @@ JsonPath paths are precompiled as both Gatling (in Gatling itself, no in the Jso
 
 * Gatling is almost 2x faster than Jayway (when both running on Jackson)
 * The combo (Gatling + Boon) is more than 3x faster than (Jayway + Jackson)
+* Boon lazy value loading is very well suited for JsonPath where you only want some branches of the JSON AST
 * Results displayed on Jayway's website are completely flawed, as they only have path caching enabled for their side, not for Gatling.
 * Jodd parser is really good, on par with Jackson on this use case (kudos Igor!)
 * Gson falls way behind, Jackson is more than 2x faster
