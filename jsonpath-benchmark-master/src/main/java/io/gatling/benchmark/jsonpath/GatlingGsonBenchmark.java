@@ -1,6 +1,7 @@
 package io.gatling.benchmark.jsonpath;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import io.gatling.jsonpath.JsonPath;
 import io.gatling.jsonpath.JsonPath$;
@@ -11,6 +12,8 @@ import org.openjdk.jmh.annotations.State;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
+import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
@@ -34,6 +37,7 @@ public class GatlingGsonBenchmark {
 	}
 
 	private static final Gson GSON = new Gson();
+	private static final Type OBJECT_TYPE = TypeToken.get(Object.class).getType();
 
 	public static final BytesAndGatlingPath[] BYTES_AND_JSONPATHS = new BytesAndGatlingPath[BYTES_AND_PATHS.size()];
 
@@ -61,14 +65,14 @@ public class GatlingGsonBenchmark {
 		int i = state.next();
 		byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
 		String text = new String(bytes, StandardCharsets.UTF_8);
-		return BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(text, Object.class));
+		return BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(new JsonReader(new StringReader(text)), OBJECT_TYPE));
 	}
 
 	@Benchmark
 	public Object parseStream(ThreadState state) throws Exception {
 		int i = state.next();
 		InputStream stream = Bytes.stream(BYTES_AND_JSONPATHS[i].chunks);
-		return BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(new JsonReader(new InputStreamReader(stream, StandardCharsets.UTF_8)), Object.class));
+		return BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(new JsonReader(new InputStreamReader(stream, StandardCharsets.UTF_8)), OBJECT_TYPE));
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -76,7 +80,7 @@ public class GatlingGsonBenchmark {
 		for (int i = 0; i < BYTES_AND_JSONPATHS.length; i++) {
 			byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
 			String text = new String(bytes, StandardCharsets.UTF_8);
-			Object result = BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(text, Object.class));
+			Object result = BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(new JsonReader(new StringReader(text)), OBJECT_TYPE));
 			System.err.println(result);
 		}
 	}
