@@ -25,9 +25,9 @@ Here are the results on my machine:
 * Intel Core i7 2,7 GHz
 
 ```
-Benchmark                                        Mode  Cnt     Score     Error  Units
-JoddBenchmark.parseStringPrecompiledRoundRobin  thrpt   20  6763.483 ± 193.008  ops/s
-JoddBenchmark.parseCharsPrecompiledRoundRobin   thrpt   20  6470.666 ± 526.220  ops/s
-JsoupBenchmark.parseStringPrecompiledRoundRobin thrpt   20  4106.197 ± 220.625  ops/s
-JsoupBenchmark.parseStreamPrecompiledRoundRobin thrpt   20  3837.760 ± 171.702  ops/s
+Benchmark                                         Mode  Cnt     Score     Error  Units
+JoddBenchmark.parseCharsPrecompiledRoundRobin    thrpt   20  6970,968 ± 290,554  ops/s
+JoddBenchmark.parseStringPrecompiledRoundRobin   thrpt   20  6535,438 ± 209,340  ops/s
+JsoupBenchmark.parseStringPrecompiledRoundRobin  thrpt   20  4297,211 ± 193,820  ops/s
+JsoupBenchmark.parseStreamPrecompiledRoundRobin  thrpt   20  4134,318 ± 211,835  ops/s
 ```
