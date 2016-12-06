@@ -26,8 +26,8 @@ Here are the results on my machine:
 
 ```
 Benchmark                                         Mode  Cnt     Score     Error  Units
-JoddBenchmark.parseCharsPrecompiledRoundRobin    thrpt   20  6970,968 ± 290,554  ops/s
-JoddBenchmark.parseStringPrecompiledRoundRobin   thrpt   20  6535,438 ± 209,340  ops/s
-JsoupBenchmark.parseStringPrecompiledRoundRobin  thrpt   20  4297,211 ± 193,820  ops/s
-JsoupBenchmark.parseStreamPrecompiledRoundRobin  thrpt   20  4134,318 ± 211,835  ops/s
+JoddBenchmark.parseCharsPrecompiledRoundRobin    thrpt   20  6737,451 ± 507,028  ops/s
+JoddBenchmark.parseStringPrecompiledRoundRobin   thrpt   20  6446,710 ± 291,393  ops/s
+JsoupBenchmark.parseStreamPrecompiledRoundRobin  thrpt   20  4734,441 ± 241,466  ops/s
+JsoupBenchmark.parseStringPrecompiledRoundRobin  thrpt   20  4952,529 ± 254,425  ops/s
 ```

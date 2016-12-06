@@ -28,7 +28,6 @@ package io.gatling.benchmark.cssselectors;
 import static io.gatling.benchmark.cssselectors.Bytes.*;
 import io.gatling.benchmark.util.UnsafeUtil;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -69,7 +68,7 @@ public class JoddBenchmark {
 		int i = state.next();
 		byte[] bytes = ALL_BYTES[i];
 		Collection<List<CssSelector>> selectors = (Collection<List<CssSelector>>) ALL_PRECOMPILED_SELECTORS[i];
-		String text = new String(bytes, StandardCharsets.UTF_8);
+		String text = ByteArrayUtf8Decoder.decode(bytes);
 		NodeSelector nodeSelector = new NodeSelector(LAGARTO_DOM_BUILDER.parse(text));
 
 		return nodeSelector.select(selectors);
@@ -80,7 +79,7 @@ public class JoddBenchmark {
 		int i = state.next();
 		byte[] bytes = ALL_BYTES[i];
 		Collection<List<CssSelector>> selectors = (Collection<List<CssSelector>>) ALL_PRECOMPILED_SELECTORS[i];
-		String text = new String(bytes, StandardCharsets.UTF_8);
+		String text = ByteArrayUtf8Decoder.decode(bytes);
 		char[] chars = UnsafeUtil.getChars(text);
 		NodeSelector nodeSelector = new NodeSelector(LAGARTO_DOM_BUILDER.parse(chars));
 
