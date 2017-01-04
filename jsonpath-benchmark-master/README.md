@@ -53,15 +53,15 @@ Here are the results on my machine:
 
 ```
 Benchmark                                      Mode  Cnt       Score       Error  Units
-GatlingBoonFastLazyChopBenchmark.parseChars   thrpt   20  156379,879 ± 11360,388  ops/s
-GatlingBoonFastLazyChopBenchmark.parseStream  thrpt   20  126926,180 ±  7606,788  ops/s
-GatlingJacksonBenchmark.parseBytes            thrpt   20   91391,201 ±  6585,989  ops/s
-GatlingJoddBenchmark.parseString              thrpt   20   88820,751 ±  5536,418  ops/s
-GatlingJacksonBenchmark.parseStream           thrpt   20   86772,499 ± 10248,926  ops/s
-GatlingJacksonBenchmark.parseString           thrpt   20   74111,004 ±  3418,296  ops/s
-JaywayJacksonBenchmark.parseBytes             thrpt   20   53497,446 ± 10924,834  ops/s
-JaywayJacksonBenchmark.parseStream            thrpt   20   49599,678 ± 10826,421  ops/s
-JaywayJacksonBenchmark.parseString            thrpt   20   47458,523 ±  9392,555  ops/s
-GatlingGsonBenchmark.parseStream              thrpt   20   45915,358 ±  1469,063  ops/s
-GatlingGsonBenchmark.parseString              thrpt   20   42711,967 ±  2245,401  ops/s
+GatlingBoonFastLazyChopBenchmark.parseChars   thrpt   20  170899,724 ± 11157,228  ops/s
+GatlingBoonFastLazyChopBenchmark.parseStream  thrpt   20  126329,481 ±  8580,265  ops/s
+GatlingJacksonBenchmark.parseBytes            thrpt   20  100677,793 ±  5423,951  ops/s
+GatlingJoddBenchmark.parseString              thrpt   20   98804,930 ±  2647,410  ops/s
+GatlingJacksonBenchmark.parseStream           thrpt   20   97664,189 ±  6372,184  ops/s
+GatlingJacksonBenchmark.parseString           thrpt   20   74388,457 ±  6799,661  ops/s
+JaywayJacksonBenchmark.parseStream            thrpt   20   56146,845 ± 13827,850  ops/s
+JaywayJacksonBenchmark.parseBytes             thrpt   20   55683,243 ± 11910,780  ops/s
+GatlingGsonBenchmark.parseStream              thrpt   20   51109,222 ±  2707,531  ops/s
+JaywayJacksonBenchmark.parseString            thrpt   20   49749,131 ±  9594,332  ops/s
+GatlingGsonBenchmark.parseString              thrpt   20   49382,793 ±   839,113  ops/s
 ```
