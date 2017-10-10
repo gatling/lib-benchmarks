@@ -16,6 +16,12 @@ import static io.gatling.benchmark.jsonpath.GatlingJacksonBenchmark.BYTES_AND_JS
 @OutputTimeUnit(TimeUnit.SECONDS)
 public class GatlingBoonFastLazyChopBenchmark {
 
+	static {
+		if (!System.getProperty("java.version").startsWith("1.8")) {
+			System.setProperty("io.advantageous.boon.faststringutils.disable", "true");
+		}
+	}
+
 	@State(Scope.Thread)
 	public static class ThreadState {
 		private int i = -1;
@@ -37,8 +43,8 @@ public class GatlingBoonFastLazyChopBenchmark {
 	@Benchmark
 	public Object parseChars(ThreadState state) throws Exception {
 		int i = state.next();
-		byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
-		Object json = newLazyChopParser().parse(UnsafeUtil.getChars(new String(bytes, StandardCharsets.UTF_8)));
+		String string = ByteArrayUtf8Decoder.decode(BYTES_AND_JSONPATHS[i].chunks);
+		Object json = newLazyChopParser().parse(UnsafeUtil.getChars(string));
 		return BYTES_AND_JSONPATHS[i].path.query(json);
 	}
 	

@@ -1,10 +1,10 @@
 package io.gatling.benchmark.jsonpath;
 
 import static io.gatling.benchmark.jsonpath.Bytes.*;
+
 import io.gatling.jsonpath.JsonPath;
 import io.gatling.jsonpath.JsonPath$;
 
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 import jodd.json.JsonParser;
@@ -61,22 +61,7 @@ public class GatlingJoddBenchmark {
   @Benchmark
   public Object parseString(ThreadState state) throws Exception {
     int i = state.next();
-    byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
-    String text = new String(bytes, StandardCharsets.UTF_8);
-    return BYTES_AND_JSONPATHS[i].path.query(JSON_PARSER_THREAD_LOCAL.get().parse(text));
-  }
-
-  public static void main(String[] args) throws Exception {
-
-
-      //String text = FileUtils.readFileToString(new java.io.File("/Users/slandelle/Documents/dev/IdeaProjects/gatling-root/lib-benchmarks/jsonpath-benchmark-master/src/main/resources/data/20k.json"), "UTF-8");
-
-    String text = "{\"foo\": \"bar\\\"}";
-
-    try {
-        JSON_PARSER_THREAD_LOCAL.get().parse(text);
-      } catch (Exception e) {
-        throw new RuntimeException("Failed on " + text, e);
-      }
+    String string = ByteArrayUtf8Decoder.decode(BYTES_AND_JSONPATHS[i].chunks);
+    return BYTES_AND_JSONPATHS[i].path.query(JSON_PARSER_THREAD_LOCAL.get().parse(string));
   }
 }

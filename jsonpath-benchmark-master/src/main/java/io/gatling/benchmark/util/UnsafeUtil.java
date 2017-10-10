@@ -4,10 +4,6 @@ import java.lang.reflect.Field;
 
 import sun.misc.Unsafe;
 
-/**
- * Inspired from Netty's PlatformDependant0
- * @author slandelle
- */
 public final class UnsafeUtil {
     public static final Unsafe UNSAFE;
     public static final long STRING_VALUE_FIELD_OFFSET;
@@ -15,33 +11,40 @@ public final class UnsafeUtil {
     public static final long STRING_COUNT_FIELD_OFFSET;
 
     static {
-        Unsafe unsafe;
-        try {
-            Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
-            unsafeField.setAccessible(true);
-            unsafe = (Unsafe) unsafeField.get(null);
-
-        } catch (Throwable cause) {
-            unsafe = null;
-        }
-
-        long stringValueFieldOffset = -1L;
-        long stringOffsetFieldOffset = -1L;
-        long stringCountFieldOffset = -1L;
-
-        if (unsafe != null) {
+        if (System.getProperty("java.version").startsWith("1.8")) {
+            Unsafe unsafe;
             try {
-                stringValueFieldOffset = unsafe.objectFieldOffset(String.class.getDeclaredField("value"));
-                stringOffsetFieldOffset = unsafe.objectFieldOffset(String.class.getDeclaredField("offset"));
-                stringCountFieldOffset = unsafe.objectFieldOffset(String.class.getDeclaredField("count"));
-            } catch (Throwable cause) {
-            }
-        }
+                Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
+                unsafeField.setAccessible(true);
+                unsafe = (Unsafe) unsafeField.get(null);
 
-        UNSAFE = unsafe;
-        STRING_VALUE_FIELD_OFFSET = stringValueFieldOffset;
-        STRING_OFFSET_FIELD_OFFSET = stringOffsetFieldOffset;
-        STRING_COUNT_FIELD_OFFSET = stringCountFieldOffset;
+            } catch (Throwable cause) {
+                unsafe = null;
+            }
+
+            long stringValueFieldOffset = -1L;
+            long stringOffsetFieldOffset = -1L;
+            long stringCountFieldOffset = -1L;
+
+            if (unsafe != null) {
+                try {
+                    stringValueFieldOffset = unsafe.objectFieldOffset(String.class.getDeclaredField("value"));
+                    stringOffsetFieldOffset = unsafe.objectFieldOffset(String.class.getDeclaredField("offset"));
+                    stringCountFieldOffset = unsafe.objectFieldOffset(String.class.getDeclaredField("count"));
+                } catch (Throwable cause) {
+                }
+            }
+
+            UNSAFE = unsafe;
+            STRING_VALUE_FIELD_OFFSET = stringValueFieldOffset;
+            STRING_OFFSET_FIELD_OFFSET = stringOffsetFieldOffset;
+            STRING_COUNT_FIELD_OFFSET = stringCountFieldOffset;
+        } else {
+            UNSAFE = null;
+            STRING_VALUE_FIELD_OFFSET = -1;
+            STRING_OFFSET_FIELD_OFFSET = -1;
+            STRING_COUNT_FIELD_OFFSET = -1;
+        }
     }
 
     public static boolean hasUnsafe() {

@@ -63,9 +63,8 @@ public class GatlingGsonBenchmark {
 	@Benchmark
 	public Object parseString(ThreadState state) throws Exception {
 		int i = state.next();
-		byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
-		String text = new String(bytes, StandardCharsets.UTF_8);
-		return BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(new JsonReader(new StringReader(text)), OBJECT_TYPE));
+		String string = ByteArrayUtf8Decoder.decode(BYTES_AND_JSONPATHS[i].chunks);
+		return BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(new JsonReader(new StringReader(string)), OBJECT_TYPE));
 	}
 
 	@Benchmark
@@ -73,15 +72,5 @@ public class GatlingGsonBenchmark {
 		int i = state.next();
 		InputStream stream = Bytes.stream(BYTES_AND_JSONPATHS[i].chunks);
 		return BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(new JsonReader(new InputStreamReader(stream, StandardCharsets.UTF_8)), OBJECT_TYPE));
-	}
-	
-	public static void main(String[] args) throws Exception {
-
-		for (int i = 0; i < BYTES_AND_JSONPATHS.length; i++) {
-			byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
-			String text = new String(bytes, StandardCharsets.UTF_8);
-			Object result = BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(new JsonReader(new StringReader(text)), OBJECT_TYPE));
-			System.err.println(result);
-		}
 	}
 }

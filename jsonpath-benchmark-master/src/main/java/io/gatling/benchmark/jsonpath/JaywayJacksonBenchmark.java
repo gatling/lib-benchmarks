@@ -3,7 +3,6 @@ package io.gatling.benchmark.jsonpath;
 import static io.gatling.benchmark.jsonpath.Bytes.*;
 
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -53,9 +52,8 @@ public class JaywayJacksonBenchmark {
 	@Benchmark
 	public Object parseString(ThreadState state) throws Exception {
 		int i = state.next();
-		byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
-		String text = new String(bytes, StandardCharsets.UTF_8);
-		return BYTES_AND_JSONPATHS[i].path.read(OBJECT_MAPPER.readValue(text, Object.class));
+		String string = ByteArrayUtf8Decoder.decode(BYTES_AND_JSONPATHS[i].chunks);
+		return BYTES_AND_JSONPATHS[i].path.read(OBJECT_MAPPER.readValue(string, Object.class));
 	}
 
 	@Benchmark
@@ -70,15 +68,5 @@ public class JaywayJacksonBenchmark {
 		int i = state.next();
 		InputStream stream = Bytes.stream(BYTES_AND_JSONPATHS[i].chunks);
 		return BYTES_AND_JSONPATHS[i].path.read(OBJECT_MAPPER.readValue(stream, Object.class));
-	}
-	
-	public static void main(String[] args) throws Exception {
-
-		for (int i = 0; i < BYTES_AND_JSONPATHS.length; i++) {
-			byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
-			String text = new String(bytes, StandardCharsets.UTF_8);
-			Object result = BYTES_AND_JSONPATHS[i].path.read(OBJECT_MAPPER.readValue(text, Object.class));
-			System.err.println(result);
-		}
 	}
 }
