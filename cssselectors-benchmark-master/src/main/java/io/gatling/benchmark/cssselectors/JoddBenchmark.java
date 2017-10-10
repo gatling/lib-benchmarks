@@ -64,18 +64,7 @@ public class JoddBenchmark {
 	}
 
 	@Benchmark
-	public List<Node> parseStringPrecompiledRoundRobin(ThreadState state) throws Exception {
-		int i = state.next();
-		byte[] bytes = ALL_BYTES[i];
-		Collection<List<CssSelector>> selectors = (Collection<List<CssSelector>>) ALL_PRECOMPILED_SELECTORS[i];
-		String text = ByteArrayUtf8Decoder.decode(bytes);
-		NodeSelector nodeSelector = new NodeSelector(LAGARTO_DOM_BUILDER.parse(text));
-
-		return nodeSelector.select(selectors);
-	}
-
-	@Benchmark
-	public List<Node> parseCharsPrecompiledRoundRobin(ThreadState state) throws Exception {
+	public List<Node> parsePrecompiledRoundRobin(ThreadState state) throws Exception {
 		int i = state.next();
 		byte[] bytes = ALL_BYTES[i];
 		Collection<List<CssSelector>> selectors = (Collection<List<CssSelector>>) ALL_PRECOMPILED_SELECTORS[i];
