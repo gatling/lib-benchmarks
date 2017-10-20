@@ -16,8 +16,8 @@
 
     <jmh.version>1.19</jmh.version>
     <jayway.version>2.4.0</jayway.version>
-    <gatling-jsonpath.version>0.6.9</gatling-jsonpath.version>
-    <jackson.version>2.9.1</jackson.version>
+    <gatling-jsonpath.version>0.6.10</gatling-jsonpath.version>
+    <jackson.version>2.9.2</jackson.version>
     <boon.version>0.6.6</boon.version>
     <slf4j.version>1.7.25</slf4j.version>
     <logback.version>1.2.3</logback.version>
