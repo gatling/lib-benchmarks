@@ -54,20 +54,20 @@ Here are the results on my machine:
 
 ```
 Benchmark                                      Mode  Cnt       Score       Error  Units
-GatlingBoonFastLazyChopBenchmark.parseChars   thrpt   20  159690,198 ± 14888,345  ops/s
-GatlingBoonFastLazyChopBenchmark.parseStream  thrpt   20  138554,445 ±  5429,010  ops/s
-GatlingJacksonBenchmark.parseBytes            thrpt   20  101789,076 ±  3822,680  ops/s
-GatlingJacksonBenchmark.parseStream           thrpt   20   99051,635 ±  4331,016  ops/s
-GatlingJoddBenchmark.parseString              thrpt   20   89691,914 ±  2720,971  ops/s
-GatlingJacksonBenchmark.parseString           thrpt   20   73114,256 ±  3323,935  ops/s
-GatlingGsonBenchmark.parseStream              thrpt   20   63774,358 ±  1206,335  ops/s
-GatlingGsonBenchmark.parseString              thrpt   20   59395,978 ±  1909,143  ops/s
-JaywayJacksonBenchmark.parseBytes             thrpt   20   56902,510 ± 13442,586  ops/s
-JaywayJacksonBenchmark.parseStream            thrpt   20   53195,302 ± 13796,420  ops/s
-JaywayJacksonBenchmark.parseString            thrpt   20   46515,968 ± 13186,301  ops/s
+GatlingBoonFastLazyChopBenchmark.parseChars   thrpt   20  151475,884 ± 12983,119  ops/s
+GatlingBoonFastLazyChopBenchmark.parseStream  thrpt   20  127272,668 ± 10199,822  ops/s
+GatlingJacksonBenchmark.parseStream           thrpt   20  109715,738 ±  9110,354  ops/s
+GatlingJacksonBenchmark.parseBytes            thrpt   20  107841,619 ±  4272,380  ops/s
+GatlingJoddBenchmark.parseString              thrpt   20  107155,837 ±  2585,741  ops/s
+GatlingJacksonBenchmark.parseString           thrpt   20   74964,176 ±  9246,998  ops/s
+GatlingGsonBenchmark.parseStream              thrpt   20   72497,038 ±  6740,172  ops/s
+JaywayJacksonBenchmark.parseStream            thrpt   20   68721,749 ± 13416,786  ops/s
+GatlingGsonBenchmark.parseString              thrpt   20   68481,498 ±  3619,926  ops/s
+JaywayJacksonBenchmark.parseBytes             thrpt   20   69123,963 ± 12896,124  ops/s
+JaywayJacksonBenchmark.parseString            thrpt   20   55148,091 ± 15866,026  ops/s
 ```
 
-* Hotspot 9
+* Hotspot 9.0.1
 
 Throughput is worse on String/chars based as we can not longer steal the char array.
 
@@ -75,17 +75,17 @@ But then, why this 15% drop on Jackson's streaming test?!
 
 ```
 Benchmark                                      Mode  Cnt       Score       Error  Units
-GatlingBoonFastLazyChopBenchmark.parseChars   thrpt   20  135162,644 ± 13695,767  ops/s
-GatlingBoonFastLazyChopBenchmark.parseStream  thrpt   20  121025,611 ± 16461,271  ops/s
-GatlingJoddBenchmark.parseString              thrpt   20   79494,498 ±  2112,468  ops/s
-GatlingJacksonBenchmark.parseBytes            thrpt   20   73609,232 ± 10003,623  ops/s
-GatlingJacksonBenchmark.parseStream           thrpt   20   75065,992 ± 13137,789  ops/s
-GatlingJacksonBenchmark.parseString           thrpt   20   65268,017 ±  1699,223  ops/s
-GatlingGsonBenchmark.parseString              thrpt   20   60019,026 ±  3364,905  ops/s
-GatlingGsonBenchmark.parseStream              thrpt   20   55509,738 ±  2937,773  ops/s
-JaywayJacksonBenchmark.parseBytes             thrpt   20   44890,883 ± 11052,027  ops/s
-JaywayJacksonBenchmark.parseStream            thrpt   20   43444,705 ± 10837,909  ops/s
-JaywayJacksonBenchmark.parseString            thrpt   20   38342,228 ± 11085,434  ops/s
+GatlingBoonFastLazyChopBenchmark.parseChars   thrpt   20  138965,479 ± 13924,613  ops/s
+GatlingBoonFastLazyChopBenchmark.parseStream  thrpt   20  127286,336 ± 12986,275  ops/s
+GatlingJacksonBenchmark.parseStream           thrpt   20   91922,131 ±  9655,717  ops/s
+GatlingJacksonBenchmark.parseBytes            thrpt   20   89301,599 ±  9195,296  ops/s
+GatlingJoddBenchmark.parseString              thrpt   20   86636,260 ±  2313,392  ops/s
+GatlingJacksonBenchmark.parseString           thrpt   20   74020,932 ±  2237,801  ops/s
+GatlingGsonBenchmark.parseStream              thrpt   20   62359,981 ±  5025,541  ops/s
+GatlingGsonBenchmark.parseString              thrpt   20   55755,679 ±  1375,446  ops/s
+JaywayJacksonBenchmark.parseBytes             thrpt   20   53805,613 ± 12440,712  ops/s
+JaywayJacksonBenchmark.parseStream            thrpt   20   50562,505 ± 13264,107  ops/s
+JaywayJacksonBenchmark.parseString            thrpt   20   43371,383 ± 15300,995  ops/s
 ```
 
 * Hotspot 9 w/ `-XX:-CompactStrings`
