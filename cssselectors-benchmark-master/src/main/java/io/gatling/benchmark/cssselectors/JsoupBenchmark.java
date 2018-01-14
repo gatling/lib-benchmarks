@@ -28,7 +28,7 @@ package io.gatling.benchmark.cssselectors;
 import static io.gatling.benchmark.cssselectors.Bytes.*;
 import io.gatling.benchmark.cssselectors.JoddBenchmark.ThreadState;
 
-import java.nio.ByteBuffer;
+import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
@@ -54,7 +54,7 @@ public class JsoupBenchmark {
   }
 
   private Object parseStreamPrecompiled(byte[] bytes, Evaluator evaluator) throws Exception {
-    Document doc = MissingFeatures.load(ByteBuffer.wrap(bytes), "UTF-8", "http://gatling-tool.org");
+    Document doc = MissingFeatures.load(new ByteArrayInputStream(bytes), "UTF-8", "http://gatling-tool.org");
     return Selector.select(evaluator, doc);
   }
 

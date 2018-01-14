@@ -23,7 +23,7 @@ Here are the results on my machine:
 * OS X 10.11.8
 * Intel Core i7 2,7 GHz
 
-* Hotspot 1.8.0_144
+* Hotspot 1.8.0_152
 
 ```
 Benchmark                                              Mode  Cnt     Score     Error  Units
