@@ -26,17 +26,21 @@ Here are the results on my machine:
 * Hotspot 1.8.0_152
 
 ```
-Benchmark                                              Mode  Cnt     Score     Error  Units
-JoddBenchmark.parsePrecompiledRoundRobin              thrpt   20  6462,973 ± 427,175  ops/s
-JsoupBenchmark.parseStreamPrecompiledRoundRobin       thrpt   20  4602,047 ± 209,666  ops/s
-JsoupBenchmark.parseStringPrecompiledRoundRobin       thrpt   20  4743,252 ± 247,841  ops/s
-```
-
-* Hotspot 9
-
-```
-Benchmark                                              Mode  Cnt     Score     Error  Units
-JoddBenchmark.parsePrecompiledRoundRobin              thrpt   20  5960,708 ± 335,282  ops/s
-JsoupBenchmark.parseStreamPrecompiledRoundRobin       thrpt   20  3400,561 ± 319,592  ops/s
-JsoupBenchmark.parseStringPrecompiledRoundRobin       thrpt   20  3264,869 ± 235,020  ops/s
+Benchmark                                             (sample)   Mode  Cnt      Score      Error  Units
+JoddBenchmark.parsePrecompiledRoundRobin                     0  thrpt   20  11674,510 ± 2973,482  ops/s
+JoddBenchmark.parsePrecompiledRoundRobin                     1  thrpt   20   4015,245 ±  188,523  ops/s
+JoddBenchmark.parsePrecompiledRoundRobin                     2  thrpt   20   3158,591 ±  165,150  ops/s
+JoddBenchmark.parsePrecompiledRoundRobin                     3  thrpt   20   1636,002 ±   69,332  ops/s
+JoddBenchmark.parsePrecompiledRoundRobinWithCharCopy         0  thrpt   20  10381,215 ± 1306,107  ops/s
+JoddBenchmark.parsePrecompiledRoundRobinWithCharCopy         1  thrpt   20   3509,597 ±  210,851  ops/s
+JoddBenchmark.parsePrecompiledRoundRobinWithCharCopy         2  thrpt   20   3131,579 ±  154,441  ops/s
+JoddBenchmark.parsePrecompiledRoundRobinWithCharCopy         3  thrpt   20   1623,171 ±  113,734  ops/s
+JsoupBenchmark.parseStreamPrecompiledRoundRobin              0  thrpt   20   8925,306 ±  748,362  ops/s
+JsoupBenchmark.parseStreamPrecompiledRoundRobin              1  thrpt   20   2776,929 ±  244,454  ops/s
+JsoupBenchmark.parseStreamPrecompiledRoundRobin              2  thrpt   20   2056,131 ±  175,461  ops/s
+JsoupBenchmark.parseStreamPrecompiledRoundRobin              3  thrpt   20   1257,150 ±   78,203  ops/s
+JsoupBenchmark.parseStringPrecompiledRoundRobin              0  thrpt   20   8680,953 ±  542,569  ops/s
+JsoupBenchmark.parseStringPrecompiledRoundRobin              1  thrpt   20   2661,547 ±  260,941  ops/s
+JsoupBenchmark.parseStringPrecompiledRoundRobin              2  thrpt   20   2362,275 ±  113,049  ops/s
+JsoupBenchmark.parseStringPrecompiledRoundRobin              3  thrpt   20   1198,349 ±   75,283  ops/s
 ```

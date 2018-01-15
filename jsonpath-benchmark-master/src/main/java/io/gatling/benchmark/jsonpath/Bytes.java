@@ -2,17 +2,14 @@ package io.gatling.benchmark.jsonpath;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 
 import org.apache.commons.io.IOUtils;
 
 public class Bytes {
 
-  public static final List<Couple<byte[][], String>> BYTES_AND_PATHS = new ArrayList<>();
+  public static final List<AbstractMap.Entry<byte[][], String>> BYTES_AND_PATHS = new ArrayList<>();
 
   private static byte[] readBytes(String path) {
     try {
@@ -197,7 +194,7 @@ public class Bytes {
 
     for (Entry<byte[][], String[]> entry : map.entrySet()) {
       for (String path : entry.getValue()) {
-        BYTES_AND_PATHS.add(new Couple<>(entry.getKey(), path));
+        BYTES_AND_PATHS.add(new AbstractMap.SimpleEntry<>(entry.getKey(), path));
       }
     }
   }

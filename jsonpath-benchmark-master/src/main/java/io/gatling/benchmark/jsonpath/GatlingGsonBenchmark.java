@@ -15,6 +15,7 @@ import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
+import java.util.AbstractMap;
 import java.util.concurrent.TimeUnit;
 
 import static io.gatling.benchmark.jsonpath.Bytes.BYTES_AND_PATHS;
@@ -43,8 +44,8 @@ public class GatlingGsonBenchmark {
 
 	static {
 		for (int i = 0; i < BYTES_AND_PATHS.size(); i++) {
-			Couple<byte[][], String> bytesAndPath = BYTES_AND_PATHS.get(i);
-			BYTES_AND_JSONPATHS[i] = new BytesAndGatlingPath(bytesAndPath.left, compile(bytesAndPath.right));
+			AbstractMap.Entry<byte[][], String> bytesAndPath = BYTES_AND_PATHS.get(i);
+			BYTES_AND_JSONPATHS[i] = new BytesAndGatlingPath(bytesAndPath.getKey(), compile(bytesAndPath.getValue()));
 		}
 	}
 

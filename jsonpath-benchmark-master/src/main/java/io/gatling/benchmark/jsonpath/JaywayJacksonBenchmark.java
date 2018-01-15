@@ -3,6 +3,7 @@ package io.gatling.benchmark.jsonpath;
 import static io.gatling.benchmark.jsonpath.Bytes.*;
 
 import java.io.InputStream;
+import java.util.AbstractMap;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -32,8 +33,8 @@ public class JaywayJacksonBenchmark {
 
 	static {
 		for (int i = 0; i < BYTES_AND_PATHS.size(); i++) {
-			Couple<byte[][], String> bytesAndPath = BYTES_AND_PATHS.get(i);
-			BYTES_AND_JSONPATHS[i] = new BytesAndJaywayPath(bytesAndPath.left, JsonPath.compile(bytesAndPath.right));
+			AbstractMap.Entry<byte[][], String> bytesAndPath = BYTES_AND_PATHS.get(i);
+			BYTES_AND_JSONPATHS[i] = new BytesAndJaywayPath(bytesAndPath.getKey(), JsonPath.compile(bytesAndPath.getValue()));
 		}
 	}
 

@@ -25,53 +25,43 @@
 
 package io.gatling.benchmark.cssselectors;
 
-import static io.gatling.benchmark.cssselectors.Bytes.*;
 import io.gatling.benchmark.util.UnsafeUtil;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import jodd.csselly.CSSelly;
-import jodd.csselly.CssSelector;
 import jodd.lagarto.dom.LagartoDOMBuilder;
 import jodd.lagarto.dom.Node;
 import jodd.lagarto.dom.NodeSelector;
 
-import org.openjdk.jmh.annotations.Benchmark;
-import org.openjdk.jmh.annotations.OutputTimeUnit;
-import org.openjdk.jmh.annotations.Scope;
-import org.openjdk.jmh.annotations.State;
+import org.openjdk.jmh.annotations.*;
 
 @OutputTimeUnit(TimeUnit.SECONDS)
+@State(Scope.Benchmark)
 public class JoddBenchmark {
 
 	private static final LagartoDOMBuilder LAGARTO_DOM_BUILDER = new LagartoDOMBuilder();
-	private static final Collection<List<CssSelector>> PRECOMPILED_SELECTORS1 = CSSelly.parse(SELECTOR1);
-	private static final Collection<List<CssSelector>> PRECOMPILED_SELECTORS2 = CSSelly.parse(SELECTOR2);
-	private static final Collection[] ALL_PRECOMPILED_SELECTORS = { PRECOMPILED_SELECTORS1, PRECOMPILED_SELECTORS2 };
 
-	@State(Scope.Thread)
-	public static class ThreadState {
-		private int i = -1;
+	@Param({"0", "1", "2", "3"})
+	public int sample;
 
-		public int next() {
-			i++;
-			if (i == ALL_BYTES.length)
-				i = 0;
-			return i;
-		}
+	@Benchmark
+	public List<Node> parsePrecompiledRoundRobin() {
+		Data data = Data.DATA[sample];
+
+		String text = data.toString();
+		char[] chars = UnsafeUtil.getChars(text);
+
+		return new NodeSelector(LAGARTO_DOM_BUILDER.parse(chars)).select(data.joddSelectors);
 	}
 
 	@Benchmark
-	public List<Node> parsePrecompiledRoundRobin(ThreadState state) throws Exception {
-		int i = state.next();
-		byte[] bytes = ALL_BYTES[i];
-		Collection<List<CssSelector>> selectors = (Collection<List<CssSelector>>) ALL_PRECOMPILED_SELECTORS[i];
-		String text = ByteArrayUtf8Decoder.decode(bytes);
-		char[] chars = UnsafeUtil.getChars(text);
-		NodeSelector nodeSelector = new NodeSelector(LAGARTO_DOM_BUILDER.parse(chars));
+	public List<Node> parsePrecompiledRoundRobinWithCharCopy() {
+		Data data = Data.DATA[sample];
 
-		return nodeSelector.select(selectors);
+		String text = data.toString();
+		char[] chars = text.toCharArray();
+
+		return new NodeSelector(LAGARTO_DOM_BUILDER.parse(chars)).select(data.joddSelectors);
 	}
 }

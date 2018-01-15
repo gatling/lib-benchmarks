@@ -5,6 +5,7 @@ import io.gatling.jsonpath.JsonPath;
 import io.gatling.jsonpath.JsonPath$;
 
 import java.io.InputStream;
+import java.util.AbstractMap;
 import java.util.concurrent.TimeUnit;
 
 import org.openjdk.jmh.annotations.Benchmark;
@@ -37,8 +38,8 @@ public class GatlingJacksonBenchmark {
 
 	static {
 		for (int i = 0; i < BYTES_AND_PATHS.size(); i++) {
-			Couple<byte[][], String> bytesAndPath = BYTES_AND_PATHS.get(i);
-			BYTES_AND_JSONPATHS[i] = new BytesAndGatlingPath(bytesAndPath.left, compile(bytesAndPath.right));
+			AbstractMap.Entry<byte[][], String> bytesAndPath = BYTES_AND_PATHS.get(i);
+			BYTES_AND_JSONPATHS[i] = new BytesAndGatlingPath(bytesAndPath.getKey(), compile(bytesAndPath.getValue()));
 		}
 	}
 

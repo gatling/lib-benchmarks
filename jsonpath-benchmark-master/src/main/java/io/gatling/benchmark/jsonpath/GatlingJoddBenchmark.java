@@ -5,6 +5,7 @@ import static io.gatling.benchmark.jsonpath.Bytes.*;
 import io.gatling.jsonpath.JsonPath;
 import io.gatling.jsonpath.JsonPath$;
 
+import java.util.AbstractMap;
 import java.util.concurrent.TimeUnit;
 
 import jodd.json.JsonParser;
@@ -41,8 +42,8 @@ public class GatlingJoddBenchmark {
 
   static {
     for (int i = 0; i < BYTES_AND_PATHS.size(); i++) {
-      Couple<byte[][], String> bytesAndPath = BYTES_AND_PATHS.get(i);
-      BYTES_AND_JSONPATHS[i] = new BytesAndGatlingPath(bytesAndPath.left, compile(bytesAndPath.right));
+      AbstractMap.Entry<byte[][], String> bytesAndPath = BYTES_AND_PATHS.get(i);
+      BYTES_AND_JSONPATHS[i] = new BytesAndGatlingPath(bytesAndPath.getKey(), compile(bytesAndPath.getValue()));
     }
   }
 
