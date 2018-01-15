@@ -18,6 +18,13 @@ Run with `java -jar target/microbenchmarks.jar ".*" -wi 2 -i 10 -f 2 -t 8`
 
 ## Figures
 
+Sample size:
+
+* 0: 21
+* 62 kB
+* 90 kB
+* 208 kB
+
 Here are the results on my machine:
 
 * OS X 10.11.8
