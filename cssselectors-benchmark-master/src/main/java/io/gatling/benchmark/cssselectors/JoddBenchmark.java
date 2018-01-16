@@ -48,20 +48,21 @@ public class JoddBenchmark {
 	@Benchmark
 	public List<Node> parseJava8CharStealing() {
 		Data data = Data.DATA[sample];
+		char[] chars = UnsafeUtil.getChars(data.toString());
+		return new NodeSelector(LAGARTO_DOM_BUILDER.parse(chars)).select(data.joddSelectors);
+	}
 
-		String text = data.toString();
-		char[] chars = UnsafeUtil.getChars(text);
-
+	@Benchmark
+	public List<Node> parseJava8CharDirect() {
+		Data data = Data.DATA[sample];
+		char[] chars = data.toChars();
 		return new NodeSelector(LAGARTO_DOM_BUILDER.parse(chars)).select(data.joddSelectors);
 	}
 
 	@Benchmark
 	public List<Node> parseCharCopy() {
 		Data data = Data.DATA[sample];
-
-		String text = data.toString();
-		char[] chars = text.toCharArray();
-
+		char[] chars = data.toString().toCharArray();
 		return new NodeSelector(LAGARTO_DOM_BUILDER.parse(chars)).select(data.joddSelectors);
 	}
 }

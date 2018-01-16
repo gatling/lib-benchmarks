@@ -1,16 +1,11 @@
 package io.gatling.benchmark.cssselectors;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufInputStream;
-import io.netty.buffer.Unpooled;
+import io.gatling.benchmark.util.Bytes;
 import jodd.csselly.CSSelly;
 import jodd.csselly.CssSelector;
-import org.apache.commons.io.IOUtils;
-import org.asynchttpclient.netty.util.Utf8ByteBufCharsetDecoder;
 import org.jsoup.select.Evaluator;
 import org.jsoup.select.QueryParser;
 
@@ -29,50 +24,20 @@ public class Data {
 
 
 	private Data(String path, String selector) {
-		this.chunks = split(readBytes(path), 1500);
+		this.chunks = Bytes.split(Bytes.readBytes(path), 1500);
 		joddSelectors = CSSelly.parse(selector);
 		jsoupEvaluator = QueryParser.parse(selector);
 	}
 
 	public String toString() {
-		ByteBuf buf = Unpooled.wrappedBuffer(chunks);
-		try {
-			return Utf8ByteBufCharsetDecoder.decodeUtf8(buf);
-		} finally {
-			buf.release();
-		}
+		return Bytes.toString(chunks);
+	}
+
+	public char[] toChars() {
+		return Bytes.toChars(chunks);
 	}
 
 	public InputStream toInputStream() {
-		return new ByteBufInputStream(Unpooled.wrappedBuffer(chunks), true);
-	}
-
-	private static byte[] readBytes(String path) {
-		try {
-			return IOUtils.toByteArray(Thread.currentThread().getContextClassLoader().getResourceAsStream(path));
-		} catch (IOException e) {
-			throw new ExceptionInInitializerError(e);
-		}
-	}
-
-	private static byte[][] split(byte[] full, int chunkSize) {
-
-		int chunkNumber = (int) Math.ceil(((double) full.length) / chunkSize);
-		byte[][] chunks = new byte[chunkNumber][];
-
-		int start = 0;
-		int chunkCount = 0;
-
-		while (start < full.length) {
-
-			int length = Math.min(full.length - start, chunkSize);
-			byte[] chunk = new byte[length];
-			System.arraycopy(full, start, chunk, 0, length);
-			chunks[chunkCount] = chunk;
-			chunkCount++;
-			start += length;
-		}
-
-		return chunks;
+		return Bytes.toInputStream(chunks);
 	}
 }

@@ -43,7 +43,6 @@ public class JsoupBenchmark {
   @Benchmark
   public Object parseString() {
     Data data = Data.DATA[sample];
-
     Document doc = Parser.parse(data.toString(), "http://gatling-tool.org");
     return Selector.select(data.jsoupEvaluator, doc);
   }
@@ -51,7 +50,6 @@ public class JsoupBenchmark {
   @Benchmark
   public Object parseInputStream() throws Exception {
     Data data = Data.DATA[sample];
-
     Document doc = DataUtil.load(data.toInputStream(), "UTF-8", "http://gatling-tool.org");
     return Selector.select(data.jsoupEvaluator, doc);
   }
