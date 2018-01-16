@@ -6,14 +6,13 @@ import java.util.List;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
-import io.netty.buffer.CompositeByteBuf;
 import io.netty.buffer.Unpooled;
 import jodd.csselly.CSSelly;
 import jodd.csselly.CssSelector;
 import org.apache.commons.io.IOUtils;
 import org.asynchttpclient.netty.util.Utf8ByteBufCharsetDecoder;
 import org.jsoup.select.Evaluator;
-import org.jsoup.select.Evaluators;
+import org.jsoup.select.QueryParser;
 
 public class Data {
 
@@ -29,14 +28,13 @@ public class Data {
 	public final Evaluator jsoupEvaluator;
 
 
-	public Data(String path, String selector) {
+	private Data(String path, String selector) {
 		this.chunks = split(readBytes(path), 1500);
 		joddSelectors = CSSelly.parse(selector);
-		jsoupEvaluator = Evaluators.evaluator(selector);
+		jsoupEvaluator = QueryParser.parse(selector);
 	}
 
 	public String toString() {
-
 		ByteBuf buf = Unpooled.wrappedBuffer(chunks);
 		try {
 			return Utf8ByteBufCharsetDecoder.decodeUtf8(buf);
@@ -57,7 +55,7 @@ public class Data {
 		}
 	}
 
-	private static final byte[][] split(byte[] full, int chunkSize) {
+	private static byte[][] split(byte[] full, int chunkSize) {
 
 		int chunkNumber = (int) Math.ceil(((double) full.length) / chunkSize);
 		byte[][] chunks = new byte[chunkNumber][];

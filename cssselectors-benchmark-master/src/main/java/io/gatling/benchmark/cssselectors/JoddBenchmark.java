@@ -46,7 +46,7 @@ public class JoddBenchmark {
 	public int sample;
 
 	@Benchmark
-	public List<Node> parsePrecompiledRoundRobin() {
+	public List<Node> parseJava8CharStealing() {
 		Data data = Data.DATA[sample];
 
 		String text = data.toString();
@@ -56,7 +56,7 @@ public class JoddBenchmark {
 	}
 
 	@Benchmark
-	public List<Node> parsePrecompiledRoundRobinWithCharCopy() {
+	public List<Node> parseCharCopy() {
 		Data data = Data.DATA[sample];
 
 		String text = data.toString();

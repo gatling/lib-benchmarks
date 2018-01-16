@@ -41,7 +41,7 @@ public class JsoupBenchmark {
   public int sample;
 
   @Benchmark
-  public Object parseStringPrecompiledRoundRobin() {
+  public Object parseString() {
     Data data = Data.DATA[sample];
 
     Document doc = Parser.parse(data.toString(), "http://gatling-tool.org");
@@ -49,7 +49,7 @@ public class JsoupBenchmark {
   }
 
   @Benchmark
-  public Object parseStreamPrecompiledRoundRobin() throws Exception {
+  public Object parseInputStream() throws Exception {
     Data data = Data.DATA[sample];
 
     Document doc = DataUtil.load(data.toInputStream(), "UTF-8", "http://gatling-tool.org");
