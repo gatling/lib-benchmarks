@@ -3,6 +3,7 @@ package io.gatling.benchmark.jsonpath;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
+import io.gatling.benchmark.util.Bytes;
 import io.gatling.jsonpath.JsonPath;
 import io.gatling.jsonpath.JsonPath$;
 import org.openjdk.jmh.annotations.Benchmark;
@@ -18,7 +19,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.AbstractMap;
 import java.util.concurrent.TimeUnit;
 
-import static io.gatling.benchmark.jsonpath.Bytes.BYTES_AND_PATHS;
+import static io.gatling.benchmark.jsonpath.Data.BYTES_AND_PATHS;
 
 @OutputTimeUnit(TimeUnit.SECONDS)
 public class GatlingGsonBenchmark {
@@ -64,14 +65,14 @@ public class GatlingGsonBenchmark {
 	@Benchmark
 	public Object parseString(ThreadState state) throws Exception {
 		int i = state.next();
-		String string = ByteArrayUtf8Decoder.decode(BYTES_AND_JSONPATHS[i].chunks);
+		String string = Bytes.toString(BYTES_AND_JSONPATHS[i].chunks);
 		return BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(new JsonReader(new StringReader(string)), OBJECT_TYPE));
 	}
 
 	@Benchmark
 	public Object parseStream(ThreadState state) throws Exception {
 		int i = state.next();
-		InputStream stream = Bytes.stream(BYTES_AND_JSONPATHS[i].chunks);
+		InputStream stream = Bytes.toInputStream(BYTES_AND_JSONPATHS[i].chunks);
 		return BYTES_AND_JSONPATHS[i].path.query(GSON.fromJson(new JsonReader(new InputStreamReader(stream, StandardCharsets.UTF_8)), OBJECT_TYPE));
 	}
 }

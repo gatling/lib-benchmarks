@@ -1,7 +1,8 @@
 package io.gatling.benchmark.jsonpath;
 
-import static io.gatling.benchmark.jsonpath.Bytes.*;
+import static io.gatling.benchmark.jsonpath.Data.*;
 
+import io.gatling.benchmark.util.Bytes;
 import io.gatling.jsonpath.JsonPath;
 import io.gatling.jsonpath.JsonPath$;
 
@@ -60,9 +61,16 @@ public class GatlingJoddBenchmark {
   }
 
   @Benchmark
-  public Object parseString(ThreadState state) throws Exception {
+  public Object parseString(ThreadState state) {
     int i = state.next();
-    String string = ByteArrayUtf8Decoder.decode(BYTES_AND_JSONPATHS[i].chunks);
+    String string = Bytes.toString(BYTES_AND_JSONPATHS[i].chunks);
     return BYTES_AND_JSONPATHS[i].path.query(JSON_PARSER_THREAD_LOCAL.get().parse(string));
+  }
+
+  @Benchmark
+  public Object parseChars(ThreadState state) {
+    int i = state.next();
+    char[] chars = Bytes.toChars(BYTES_AND_JSONPATHS[i].chunks);
+    return BYTES_AND_JSONPATHS[i].path.query(JSON_PARSER_THREAD_LOCAL.get().parse(chars));
   }
 }

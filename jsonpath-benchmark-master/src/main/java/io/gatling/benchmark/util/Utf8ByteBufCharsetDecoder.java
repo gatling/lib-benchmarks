@@ -13,7 +13,6 @@
  */
 package io.gatling.benchmark.util;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
 import io.netty.buffer.ByteBuf;
 import org.asynchttpclient.netty.util.ByteBufUtils;
 
@@ -22,6 +21,8 @@ import java.nio.CharBuffer;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CoderResult;
 import java.nio.charset.CodingErrorAction;
+
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public class Utf8ByteBufCharsetDecoder {
 

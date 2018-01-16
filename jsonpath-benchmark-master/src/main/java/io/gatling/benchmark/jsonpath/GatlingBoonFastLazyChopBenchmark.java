@@ -1,6 +1,7 @@
 package io.gatling.benchmark.jsonpath;
 
 import io.advantageous.boon.json.implementation.JsonFastParser;
+import io.gatling.benchmark.util.Bytes;
 import io.gatling.benchmark.util.UnsafeUtil;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
@@ -41,17 +42,17 @@ public class GatlingBoonFastLazyChopBenchmark {
 	}
 
 	@Benchmark
-	public Object parseChars(ThreadState state) throws Exception {
+	public Object parseChars(ThreadState state) {
 		int i = state.next();
-		String string = ByteArrayUtf8Decoder.decode(BYTES_AND_JSONPATHS[i].chunks);
-		Object json = newLazyChopParser().parse(UnsafeUtil.getChars(string));
+		char[] chars = Bytes.toChars(BYTES_AND_JSONPATHS[i].chunks);
+		Object json = newLazyChopParser().parse(chars);
 		return BYTES_AND_JSONPATHS[i].path.query(json);
 	}
 	
 	@Benchmark
-	public Object parseStream(ThreadState state) throws Exception {
+	public Object parseStream(ThreadState state) {
 		int i = state.next();
-		InputStream stream = Bytes.stream(BYTES_AND_JSONPATHS[i].chunks);
+		InputStream stream = Bytes.toInputStream(BYTES_AND_JSONPATHS[i].chunks);
 		Object json = newLazyChopParser().parse(stream, StandardCharsets.UTF_8);
 		return BYTES_AND_JSONPATHS[i].path.query(json);
 	}

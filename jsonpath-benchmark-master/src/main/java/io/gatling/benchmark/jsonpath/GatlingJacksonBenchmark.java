@@ -1,6 +1,8 @@
 package io.gatling.benchmark.jsonpath;
 
-import static io.gatling.benchmark.jsonpath.Bytes.*;
+import static io.gatling.benchmark.jsonpath.Data.*;
+
+import io.gatling.benchmark.util.Bytes;
 import io.gatling.jsonpath.JsonPath;
 import io.gatling.jsonpath.JsonPath$;
 
@@ -58,21 +60,21 @@ public class GatlingJacksonBenchmark {
 	@Benchmark
 	public Object parseString(ThreadState state) throws Exception {
 		int i = state.next();
-		String string = ByteArrayUtf8Decoder.decode(BYTES_AND_JSONPATHS[i].chunks);
+		String string = Bytes.toString(BYTES_AND_JSONPATHS[i].chunks);
 		return BYTES_AND_JSONPATHS[i].path.query(OBJECT_MAPPER.readValue(string, Object.class));
 	}
 
 	@Benchmark
 	public Object parseBytes(ThreadState state) throws Exception {
 		int i = state.next();
-		byte[] bytes = Bytes.merge(BYTES_AND_JSONPATHS[i].chunks);
+		byte[] bytes = Bytes.toBytes(BYTES_AND_JSONPATHS[i].chunks);
 		return BYTES_AND_JSONPATHS[i].path.query(OBJECT_MAPPER.readValue(bytes, Object.class));
 	}
 
 	@Benchmark
 	public Object parseStream(ThreadState state) throws Exception {
 		int i = state.next();
-		InputStream stream = Bytes.stream(BYTES_AND_JSONPATHS[i].chunks);
+		InputStream stream = Bytes.toInputStream(BYTES_AND_JSONPATHS[i].chunks);
 		return BYTES_AND_JSONPATHS[i].path.query(OBJECT_MAPPER.readValue(stream, Object.class));
 	}
 }
