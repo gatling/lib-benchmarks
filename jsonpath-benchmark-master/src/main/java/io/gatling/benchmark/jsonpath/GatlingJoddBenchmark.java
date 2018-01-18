@@ -32,12 +32,7 @@ public class GatlingJoddBenchmark {
     return JsonPath$.MODULE$.compile(path).right().get();
   }
 
-  private static final ThreadLocal<JsonParser> JSON_PARSER_THREAD_LOCAL = new ThreadLocal<JsonParser>() {
-    @Override
-    protected JsonParser initialValue() {
-      return new JsonParser();
-    }
-  };
+  private static final ThreadLocal<JsonParser> JSON_PARSER_THREAD_LOCAL = ThreadLocal.withInitial(() -> new JsonParser().lazy(true));
 
   public static final BytesAndGatlingPath[] BYTES_AND_JSONPATHS = new BytesAndGatlingPath[BYTES_AND_PATHS.size()];
 
