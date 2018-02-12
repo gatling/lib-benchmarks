@@ -4,6 +4,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
 import io.netty.buffer.Unpooled;
 import org.apache.commons.io.IOUtils;
+import org.asynchttpclient.netty.util.Utf8ByteBufCharsetDecoder;
 
 import java.io.IOException;
 import java.io.InputStream;

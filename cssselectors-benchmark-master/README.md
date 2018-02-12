@@ -37,51 +37,51 @@ On my machine:
 * Hotspot 1.8.0_152
 
 ```
-Benchmark                             (sample)   Mode  Cnt     Score      Error  Units
-JoddBenchmark.parseCharCopy                  0  thrpt   10  6921,153 ± 473,762  ops/s
-JoddBenchmark.parseCharCopy                  1  thrpt   10  2067,890 ±  296,707  ops/s
-JoddBenchmark.parseCharCopy                  2  thrpt   10  1813,691 ±  222,156  ops/s
-JoddBenchmark.parseCharCopy                  3  thrpt   10   974,880 ±   79,430  ops/s
-JoddBenchmark.parseJava8CharDirect           0  thrpt   10  7785,972 ±  456,733  ops/s
-JoddBenchmark.parseJava8CharDirect           1  thrpt   10  2303,590 ±  181,806  ops/s
-JoddBenchmark.parseJava8CharDirect           2  thrpt   10  2019,688 ±  128,986  ops/s
-JoddBenchmark.parseJava8CharDirect           3  thrpt   10  1063,761 ±  120,238  ops/s
-JoddBenchmark.parseJava8CharStealing         0  thrpt   10  7617,431 ±  333,155  ops/s
-JoddBenchmark.parseJava8CharStealing         1  thrpt   10  2314,005 ±  178,728  ops/s
-JoddBenchmark.parseJava8CharStealing         2  thrpt   10  1994,047 ±  122,149  ops/s
-JoddBenchmark.parseJava8CharStealing         3  thrpt   10  1045,304 ±   70,357  ops/s
-JsoupBenchmark.parseInputStream              0  thrpt   10  5467,323 ±  366,465  ops/s
-JsoupBenchmark.parseInputStream              1  thrpt   10  1711,234 ±  162,718  ops/s
-JsoupBenchmark.parseInputStream              2  thrpt   10  1211,918 ±   73,561  ops/s
-JsoupBenchmark.parseInputStream              3  thrpt   10   824,525 ±   57,874  ops/s
-JsoupBenchmark.parseString                   0  thrpt   10  5781,451 ±  297,572  ops/s
-JsoupBenchmark.parseString                   1  thrpt   10  1691,199 ±  165,585  ops/s
-JsoupBenchmark.parseString                   2  thrpt   10  1329,760 ±   84,677  ops/s
-JsoupBenchmark.parseString                   3  thrpt   10   783,537 ±   35,747  ops/s
+Benchmark                             (sample)   Mode  Cnt     Score     Error  Units
+JoddBenchmark.parseCharCopy                  0  thrpt   10  7602,170 ± 426,430  ops/s
+JoddBenchmark.parseCharCopy                  1  thrpt   10  2293,539 ± 119,860  ops/s
+JoddBenchmark.parseCharCopy                  2  thrpt   10  1875,176 ± 120,986  ops/s
+JoddBenchmark.parseCharCopy                  3  thrpt   10  1014,676 ±  71,370  ops/s
+JoddBenchmark.parseJava8CharDirect           0  thrpt   10  6814,176 ± 920,668  ops/s
+JoddBenchmark.parseJava8CharDirect           1  thrpt   10  2208,485 ± 161,425  ops/s
+JoddBenchmark.parseJava8CharDirect           2  thrpt   10  1938,298 ± 122,618  ops/s
+JoddBenchmark.parseJava8CharDirect           3  thrpt   10  1060,934 ±  86,567  ops/s
+JoddBenchmark.parseJava8CharStealing         0  thrpt   10  7449,596 ± 511,578  ops/s
+JoddBenchmark.parseJava8CharStealing         1  thrpt   10  2270,645 ± 142,098  ops/s
+JoddBenchmark.parseJava8CharStealing         2  thrpt   10  1994,885 ± 102,658  ops/s
+JoddBenchmark.parseJava8CharStealing         3  thrpt   10  1067,349 ±  61,572  ops/s
+JsoupBenchmark.parseInputStream              0  thrpt   10  5865,700 ± 265,706  ops/s
+JsoupBenchmark.parseInputStream              1  thrpt   10  1829,575 ± 163,042  ops/s
+JsoupBenchmark.parseInputStream              2  thrpt   10  1291,425 ±  90,803  ops/s
+JsoupBenchmark.parseInputStream              3  thrpt   10   836,827 ±  52,197  ops/s
+JsoupBenchmark.parseString                   0  thrpt   10  6356,313 ± 284,043  ops/s
+JsoupBenchmark.parseString                   1  thrpt   10  1803,461 ± 103,913  ops/s
+JsoupBenchmark.parseString                   2  thrpt   10  1423,622 ±  93,793  ops/s
+JsoupBenchmark.parseString                   3  thrpt   10   808,842 ±  39,898  ops/s
 ```
 
-* Hotspot 9.0.1
+* Hotspot 9.0.4
 
 ```
 Benchmark                             (sample)   Mode  Cnt     Score     Error  Units
-JoddBenchmark.parseCharCopy                  0  thrpt   10  6953,051 ± 147,808  ops/s
-JoddBenchmark.parseCharCopy                  1  thrpt   10  2142,818 ±  47,455  ops/s
-JoddBenchmark.parseCharCopy                  2  thrpt   10  1824,656 ±  53,191  ops/s
-JoddBenchmark.parseCharCopy                  3  thrpt   10  1010,807 ±  32,047  ops/s
-JoddBenchmark.parseJava8CharDirect           0  thrpt   10  6602,971 ± 281,799  ops/s
-JoddBenchmark.parseJava8CharDirect           1  thrpt   10  2060,563 ±  75,228  ops/s
-JoddBenchmark.parseJava8CharDirect           2  thrpt   10  1710,651 ±  89,290  ops/s
-JoddBenchmark.parseJava8CharDirect           3  thrpt   10  1028,793 ±  18,218  ops/s
-JoddBenchmark.parseJava8CharStealing         0  thrpt   10  6902,114 ± 222,657  ops/s
-JoddBenchmark.parseJava8CharStealing         1  thrpt   10  2053,606 ±  60,965  ops/s
-JoddBenchmark.parseJava8CharStealing         2  thrpt   10  1825,691 ±  99,056  ops/s
-JoddBenchmark.parseJava8CharStealing         3  thrpt   10   995,919 ±  51,279  ops/s
-JsoupBenchmark.parseInputStream              0  thrpt   10  5026,164 ± 248,086  ops/s
-JsoupBenchmark.parseInputStream              1  thrpt   10  1445,581 ±  69,266  ops/s
-JsoupBenchmark.parseInputStream              2  thrpt   10  1152,667 ±  52,952  ops/s
-JsoupBenchmark.parseInputStream              3  thrpt   10   718,969 ±  21,563  ops/s
-JsoupBenchmark.parseString                   0  thrpt   10  4773,896 ± 188,097  ops/s
-JsoupBenchmark.parseString                   1  thrpt   10  1553,884 ±  62,492  ops/s
-JsoupBenchmark.parseString                   2  thrpt   10  1190,102 ±  45,828  ops/s
-JsoupBenchmark.parseString                   3  thrpt   10   697,228 ±  30,108  ops/s
+JoddBenchmark.parseCharCopy                  0  thrpt   10  6593,351 ± 155,707  ops/s
+JoddBenchmark.parseCharCopy                  1  thrpt   10  1866,367 ± 178,507  ops/s
+JoddBenchmark.parseCharCopy                  2  thrpt   10  1667,855 ± 155,705  ops/s
+JoddBenchmark.parseCharCopy                  3  thrpt   10   919,625 ±  40,457  ops/s
+JoddBenchmark.parseJava8CharDirect           0  thrpt   10  6883,502 ± 261,179  ops/s
+JoddBenchmark.parseJava8CharDirect           1  thrpt   10  2011,932 ±  78,692  ops/s
+JoddBenchmark.parseJava8CharDirect           2  thrpt   10  1853,802 ± 111,963  ops/s
+JoddBenchmark.parseJava8CharDirect           3  thrpt   10  1015,729 ±  22,436  ops/s
+JoddBenchmark.parseJava8CharStealing         0  thrpt   10  6651,487 ±  74,787  ops/s
+JoddBenchmark.parseJava8CharStealing         1  thrpt   10  2058,189 ±  67,958  ops/s
+JoddBenchmark.parseJava8CharStealing         2  thrpt   10  1808,361 ±  48,483  ops/s
+JoddBenchmark.parseJava8CharStealing         3  thrpt   10   988,039 ±  31,291  ops/s
+JsoupBenchmark.parseInputStream              0  thrpt   10  4454,507 ± 185,641  ops/s
+JsoupBenchmark.parseInputStream              1  thrpt   10  1485,116 ± 125,248  ops/s
+JsoupBenchmark.parseInputStream              2  thrpt   10  1121,662 ±  28,358  ops/s
+JsoupBenchmark.parseInputStream              3  thrpt   10   761,868 ±  17,561  ops/s
+JsoupBenchmark.parseString                   0  thrpt   10  4907,430 ±  74,819  ops/s
+JsoupBenchmark.parseString                   1  thrpt   10  1573,181 ±  49,155  ops/s
+JsoupBenchmark.parseString                   2  thrpt   10  1252,711 ±  34,559  ops/s
+JsoupBenchmark.parseString                   3  thrpt   10   694,041 ±  24,655  ops/s
 ```

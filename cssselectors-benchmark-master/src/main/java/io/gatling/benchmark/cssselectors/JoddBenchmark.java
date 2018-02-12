@@ -25,8 +25,6 @@
 
 package io.gatling.benchmark.cssselectors;
 
-import io.gatling.benchmark.util.UnsafeUtil;
-
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -34,6 +32,7 @@ import jodd.lagarto.dom.LagartoDOMBuilder;
 import jodd.lagarto.dom.Node;
 import jodd.lagarto.dom.NodeSelector;
 
+import jodd.util.UnsafeUtil;
 import org.openjdk.jmh.annotations.*;
 
 @OutputTimeUnit(TimeUnit.SECONDS)
