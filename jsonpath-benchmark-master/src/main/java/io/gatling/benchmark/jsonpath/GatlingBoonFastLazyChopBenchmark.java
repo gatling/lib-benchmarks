@@ -2,7 +2,6 @@ package io.gatling.benchmark.jsonpath;
 
 import io.advantageous.boon.json.implementation.JsonFastParser;
 import io.gatling.benchmark.util.Bytes;
-import io.gatling.benchmark.util.UnsafeUtil;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
