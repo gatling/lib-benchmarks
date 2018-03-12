@@ -38,10 +38,10 @@ public class TwentyKBenchmark {
 //    return GsonHelper.parseStream(CHUNKS, path);
 //  }
 
-  @Benchmark
-  public Object gatling_jackson_string() throws Exception {
-    return JacksonHelper.parseString(CHUNKS, path);
-  }
+//  @Benchmark
+//  public Object gatling_jackson_string() throws Exception {
+//    return JacksonHelper.parseString(CHUNKS, path);
+//  }
 
   @Benchmark
   public Object gatling_jackson_stream() throws Exception {
@@ -58,16 +58,15 @@ public class TwentyKBenchmark {
     return JoddHelper.parseChars(CHUNKS, path);
   }
 
-  @Benchmark
-  public Object jayway_jackson_string() throws Exception {
-    return JaywayJacksonHelper.parseString(CHUNKS, path);
-  }
-
-  @Benchmark
-  public Object jayway_jackson_bytes() throws Exception {
-    return JaywayJacksonHelper.parseString(CHUNKS, path);
-  }
-
+//  @Benchmark
+//  public Object jayway_jackson_string() throws Exception {
+//    return JaywayJacksonHelper.parseString(CHUNKS, path);
+//  }
+//
+//  @Benchmark
+//  public Object jayway_jackson_bytes() throws Exception {
+//    return JaywayJacksonHelper.parseString(CHUNKS, path);
+//  }
 
   @Benchmark
   public Object jayway_jackson_stream() throws Exception {
