@@ -52,56 +52,56 @@ On my machine:
 * Hotspot 1.8.0_152
 
 ```
-Benchmark                                                                                (path)   Mode  Cnt       Score       Error  Units
-CtimBenchmark.gatling_jackson_stream                  $.performances[?(@.eventId == 339420805)]  thrpt   10     361,510 ±    29,929  ops/s
-CtimBenchmark.jayway_jackson_stream                   $.performances[?(@.eventId == 339420805)]  thrpt   10     359,247 ±    33,750  ops/s
-CtimBenchmark.gatling_jodd_string                     $.performances[?(@.eventId == 339420805)]  thrpt   10     222,366 ±    10,306  ops/s
-CtimBenchmark.gatling_jodd_chars                      $.performances[?(@.eventId == 339420805)]  thrpt   10     214,406 ±     9,591  ops/s
+Benchmark                                                                            (path)   Mode  Cnt       Score       Error  Units
+CtimBenchmark.gatling_jackson_stream              $.performances[?(@.eventId == 339420805)]  thrpt   10     345,081 ±    27,478  ops/s
+CtimBenchmark.jayway_jackson_stream               $.performances[?(@.eventId == 339420805)]  thrpt   10     329,632 ±    28,370  ops/s
+CtimBenchmark.gatling_jodd_chars                  $.performances[?(@.eventId == 339420805)]  thrpt   10     198,416 ±    11,017  ops/s
+CtimBenchmark.gatling_jodd_string                 $.performances[?(@.eventId == 339420805)]  thrpt   10     196,365 ±    27,333  ops/s
 
-GoessnerBenchmark.gatling_jodd_chars                                     $.store.book[2].author  thrpt   10  691905,718 ± 49661,610  ops/s
-GoessnerBenchmark.gatling_jodd_string                                    $.store.book[2].author  thrpt   10  666894,022 ± 53781,785  ops/s
-GoessnerBenchmark.gatling_jackson_stream                                 $.store.book[2].author  thrpt   10  449706,238 ± 26624,610  ops/s
-GoessnerBenchmark.jayway_jackson_stream                                  $.store.book[2].author  thrpt   10  339272,649 ± 27741,399  ops/s
+GoessnerBenchmark.gatling_jodd_string                                $.store.book[2].author  thrpt   10  701588,472 ± 35203,835  ops/s
+GoessnerBenchmark.gatling_jodd_chars                                 $.store.book[2].author  thrpt   10  689193,367 ± 35837,252  ops/s
+GoessnerBenchmark.gatling_jackson_stream                             $.store.book[2].author  thrpt   10  414459,557 ± 27699,858  ops/s
+GoessnerBenchmark.jayway_jackson_stream                              $.store.book[2].author  thrpt   10  373234,955 ± 23291,245  ops/s
 
-GoessnerBenchmark.gatling_jodd_string                                                 $..author  thrpt   10  696179,183 ± 49083,305  ops/s
-GoessnerBenchmark.gatling_jodd_chars                                                  $..author  thrpt   10  689243,137 ± 29633,178  ops/s
-GoessnerBenchmark.gatling_jackson_stream                                              $..author  thrpt   10  471002,259 ± 23313,378  ops/s
-GoessnerBenchmark.jayway_jackson_stream                                               $..author  thrpt   10  224710,406 ± 33575,218  ops/s
+GoessnerBenchmark.gatling_jodd_string                                             $..author  thrpt   10  702129,792 ± 62996,119  ops/s
+GoessnerBenchmark.gatling_jodd_chars                                              $..author  thrpt   10  687225,855 ± 27172,887  ops/s
+GoessnerBenchmark.gatling_jackson_stream                                          $..author  thrpt   10  422431,440 ± 38796,446  ops/s
+GoessnerBenchmark.jayway_jackson_stream                                           $..author  thrpt   10  231165,919 ±  6054,463  ops/s
 
-GoessnerBenchmark.gatling_jodd_chars                                                  $.store.*  thrpt   10  716462,316 ± 41178,303  ops/s
-GoessnerBenchmark.gatling_jodd_string                                                 $.store.*  thrpt   10  716788,719 ± 54414,965  ops/s
-GoessnerBenchmark.gatling_jackson_stream                                              $.store.*  thrpt   10  464056,774 ± 24101,976  ops/s
-GoessnerBenchmark.jayway_jackson_stream                                               $.store.*  thrpt   10  402515,912 ± 26253,349  ops/s
+GoessnerBenchmark.gatling_jodd_string                                             $.store.*  thrpt   10  716982,627 ± 38710,619  ops/s
+GoessnerBenchmark.gatling_jodd_chars                                              $.store.*  thrpt   10  650479,719 ± 34429,087  ops/s
+GoessnerBenchmark.gatling_jackson_stream                                          $.store.*  thrpt   10  408558,071 ± 52775,108  ops/s
+GoessnerBenchmark.jayway_jackson_stream                                           $.store.*  thrpt   10  369859,072 ± 18143,601  ops/s
 
-GoessnerBenchmark.gatling_jodd_chars                                           $..book[2].title  thrpt   10  725319,031 ± 34149,445  ops/s
-GoessnerBenchmark.gatling_jodd_string                                          $..book[2].title  thrpt   10  754908,451 ± 28221,410  ops/s
-GoessnerBenchmark.gatling_jackson_stream                                       $..book[2].title  thrpt   10  430898,682 ± 21003,529  ops/s
-GoessnerBenchmark.jayway_jackson_stream                                        $..book[2].title  thrpt   10  243229,836 ± 16937,642  ops/s
+GoessnerBenchmark.gatling_jodd_string                                      $..book[2].title  thrpt   10  729861,433 ± 34334,819  ops/s
+GoessnerBenchmark.gatling_jodd_chars                                       $..book[2].title  thrpt   10  627590,370 ± 80378,140  ops/s
+GoessnerBenchmark.gatling_jackson_stream                                   $..book[2].title  thrpt   10  413286,684 ± 30658,120  ops/s
+GoessnerBenchmark.jayway_jackson_stream                                    $..book[2].title  thrpt   10  229386,620 ± 15570,646  ops/s
 
-GoessnerBenchmark.gatling_jodd_string                                                      $..*  thrpt   10  727748,549 ± 28693,801  ops/s
-GoessnerBenchmark.gatling_jodd_chars                                                       $..*  thrpt   10  661918,534 ± 34739,219  ops/s
-GoessnerBenchmark.gatling_jackson_stream                                                   $..*  thrpt   10  417010,968 ± 43359,052  ops/s
-GoessnerBenchmark.jayway_jackson_stream                                                    $..*  thrpt   10  162307,152 ± 15474,768  ops/s
+GoessnerBenchmark.gatling_jodd_string                                                  $..*  thrpt   10  725164,438 ± 22375,134  ops/s
+GoessnerBenchmark.gatling_jodd_chars                                                   $..*  thrpt   10  676060,873 ± 57266,729  ops/s
+GoessnerBenchmark.gatling_jackson_stream                                               $..*  thrpt   10  450203,361 ± 29362,504  ops/s
+GoessnerBenchmark.jayway_jackson_stream                                                $..*  thrpt   10  165373,891 ±  7263,248  ops/s
 
-GoessnerBenchmark.gatling_jodd_string         $.store.book[?(@.price < 10 && @.price >4)].title  thrpt   10  744802,424 ± 35575,593  ops/s
-GoessnerBenchmark.gatling_jodd_chars          $.store.book[?(@.price < 10 && @.price >4)].title  thrpt   10  672680,786 ± 26271,279  ops/s
-GoessnerBenchmark.gatling_jackson_stream      $.store.book[?(@.price < 10 && @.price >4)].title  thrpt   10  462328,177 ± 23672,630  ops/s
-GoessnerBenchmark.jayway_jackson_stream       $.store.book[?(@.price < 10 && @.price >4)].title  thrpt   10  111774,743 ±  8713,608  ops/s
+GoessnerBenchmark.gatling_jodd_string     $.store.book[?(@.price < 10 && @.price >4)].title  thrpt   10  696719,905 ± 26066,859  ops/s
+GoessnerBenchmark.gatling_jodd_chars      $.store.book[?(@.price < 10 && @.price >4)].title  thrpt   10  691843,563 ± 43904,569  ops/s
+GoessnerBenchmark.gatling_jackson_stream  $.store.book[?(@.price < 10 && @.price >4)].title  thrpt   10  429400,176 ± 48214,415  ops/s
+GoessnerBenchmark.jayway_jackson_stream   $.store.book[?(@.price < 10 && @.price >4)].title  thrpt   10   94540,783 ±  4865,509  ops/s
 
-TwentyKBenchmark.gatling_jodd_chars                                            $..friends..name  thrpt   10   31032,810 ±  1968,179  ops/s
-TwentyKBenchmark.gatling_jodd_string                                           $..friends..name  thrpt   10   30893,496 ±  1543,162  ops/s
-TwentyKBenchmark.gatling_jackson_stream                                        $..friends..name  thrpt   10   17208,600 ±   918,750  ops/s
-TwentyKBenchmark.jayway_jackson_stream                                         $..friends..name  thrpt   10    9115,453 ±  1660,753  ops/s
+TwentyKBenchmark.gatling_jodd_string                                       $..friends..name  thrpt   10   29250,741 ±  1509,612  ops/s
+TwentyKBenchmark.gatling_jodd_chars                                        $..friends..name  thrpt   10   28960,471 ±  1677,351  ops/s
+TwentyKBenchmark.gatling_jackson_stream                                    $..friends..name  thrpt   10   18837,010 ±  1050,513  ops/s
+TwentyKBenchmark.jayway_jackson_stream                                     $..friends..name  thrpt   10    9296,304 ±  1190,512  ops/s
 
-TwitterBenchmark.gatling_jodd_string                                             $.completed_in  thrpt   10   61439,419 ±  2165,309  ops/s
-TwitterBenchmark.gatling_jodd_chars                                              $.completed_in  thrpt   10   59675,834 ±  2578,713  ops/s
-TwitterBenchmark.gatling_jackson_stream                                          $.completed_in  thrpt   10   40422,112 ±  2303,300  ops/s
-TwitterBenchmark.jayway_jackson_stream                                           $.completed_in  thrpt   10   40033,987 ±  2697,736  ops/s
+TwitterBenchmark.gatling_jodd_chars                                          $.completed_in  thrpt   10   61875,438 ±  2294,678  ops/s
+TwitterBenchmark.gatling_jodd_string                                         $.completed_in  thrpt   10   57035,810 ±  2198,980  ops/s
+TwitterBenchmark.gatling_jackson_stream                                      $.completed_in  thrpt   10   43497,456 ±  3087,093  ops/s
+TwitterBenchmark.jayway_jackson_stream                                       $.completed_in  thrpt   10   41292,192 ±  3030,398  ops/s
 
-WebXmlBenchmark.gatling_jodd_chars                $.web-app.servlet[0].init-param.dataStoreName  thrpt   10  191308,414 ± 10472,964  ops/s
-WebXmlBenchmark.gatling_jodd_string               $.web-app.servlet[0].init-param.dataStoreName  thrpt   10  183604,549 ±  7216,906  ops/s
-WebXmlBenchmark.gatling_jackson_stream            $.web-app.servlet[0].init-param.dataStoreName  thrpt   10  152383,865 ± 19208,084  ops/s
-WebXmlBenchmark.jayway_jackson_stream             $.web-app.servlet[0].init-param.dataStoreName  thrpt   10  145736,682 ±  7073,220  ops/s
+WebXmlBenchmark.gatling_jackson_stream        $.web-app.servlet[0].init-param.dataStoreName  thrpt   10  163089,710 ± 11570,557  ops/s
+WebXmlBenchmark.gatling_jodd_chars            $.web-app.servlet[0].init-param.dataStoreName  thrpt   10  189186,981 ±  7706,387  ops/s
+WebXmlBenchmark.gatling_jodd_string           $.web-app.servlet[0].init-param.dataStoreName  thrpt   10  179017,113 ± 10244,521  ops/s
+WebXmlBenchmark.jayway_jackson_stream         $.web-app.servlet[0].init-param.dataStoreName  thrpt   10  150900,108 ± 10190,489  ops/s
 ```
 
 * Hotspot 9.0.4

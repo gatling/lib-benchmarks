@@ -1,58 +1,28 @@
-/*
- * Copyright 2011-2018 GatlingCorp (http://gatling.io)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
+//  Copyright 2015 Richard Hightower
 //
-// Copyright 2013-2014 Richard M. Hightower
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
+//   Licensed under the Apache License, Version 2.0 (the "License");
+//   you may not use this file except in compliance with the License.
+//   You may obtain a copy of the License at
 //
-//  		http://www.apache.org/licenses/LICENSE-2.0
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-//
-// __________                              _____          __   .__
-// \______   \ ____   ____   ____   /\    /     \ _____  |  | _|__| ____    ____
-//  |    |  _//  _ \ /  _ \ /    \  \/   /  \ /  \\__  \ |  |/ /  |/    \  / ___\
-//  |    |   (  <_> |  <_> )   |  \ /\  /    Y    \/ __ \|    <|  |   |  \/ /_/  >
-//  |______  /\____/ \____/|___|  / \/  \____|__  (____  /__|_ \__|___|  /\___  /
-//         \/                   \/              \/     \/     \/       \//_____/
-//      ____.                     ___________   _____    ______________.___.
-//     |    |____ ___  _______    \_   _____/  /  _  \  /   _____/\__  |   |
-//     |    \__  \\  \/ /\__  \    |    __)_  /  /_\  \ \_____  \  /   |   |
-// /\__|    |/ __ \\   /  / __ \_  |        \/    |    \/        \ \____   |
-// \________(____  /\_/  (____  / /_______  /\____|__  /_______  / / ______|
-//               \/           \/          \/         \/        \/  \/
-//
+//   Unless required by applicable law or agreed to in writing, software
+//   distributed under the License is distributed on an "AS IS" BASIS,
+//   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//   See the License for the specific language governing permissions and
+//   limitations under the License.
 
 package io.advantageous.boon.core;
 
+
 import java.lang.reflect.Array;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 
 /**
  * This map only builds once you ask for a key for the first time.
  * It is designed to not incur the overhead of creating a map unless needed.
- *
+ * <p>
  * Taken from Boon project (https://github.com/boonproject/boon)
  */
 public class SimpleLazyMap extends AbstractMap {
@@ -83,8 +53,20 @@ public class SimpleLazyMap extends AbstractMap {
   }
 
   @Override
+  public Set keySet() {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
+  public Collection values() {
+    buildIfNeeded();
+    return map.values();
+  }
+
+  @Override
   public Set<Entry<Object, Object>> entrySet() {
-    return map == null ? new FakeEntrySet() : map.entrySet();
+    buildIfNeeded();
+    return map.entrySet();
   }
 
   @Override
@@ -94,57 +76,29 @@ public class SimpleLazyMap extends AbstractMap {
 
   @Override
   public boolean isEmpty() {
-    if (map == null) {
-      return size == 0;
-    }
-    return map.isEmpty();
-  }
-
-  @Override
-  public boolean containsValue(final Object value) {
-    if (map == null) {
-      for (int i = 0; i < size; i++) {
-        if (values[i].equals(value)) {
-          return true;
-        }
-      }
-      return false;
-    } else {
-      return map.containsValue(value);
-    }
+    return map == null ? size == 0 : map.isEmpty();
   }
 
   @Override
   public boolean containsKey(final Object key) {
-    if (map == null) {
-      for (int i = 0; i < size; i++) {
-        if (keys[i].equals(key)) {
-          return true;
-        }
-      }
-      return false;
-    } else {
-      return map.containsKey(key);
-    }
+    buildIfNeeded();
+    return map.containsKey(key);
+  }
+
+  @Override
+  public boolean containsValue(final Object value) {
+    throw new UnsupportedOperationException();
   }
 
   @Override
   public Object get(final Object key) {
-    if (map == null) {
-      for (int i = 0; i < size; i++) {
-        if (keys[i].equals(key)) {
-          return values[i];
-        }
-      }
-      return null;
-    } else {
-      return map.get(key);
-    }
+    buildIfNeeded();
+    return map.get(key);
   }
 
   private void buildIfNeeded() {
     if (map == null) {
-      map = new LinkedHashMap<>(size, 0.01f);
+      map = new LinkedHashMap<>();
 
       for (int index = 0; index < size; index++) {
         Object value = values[index];
@@ -162,261 +116,24 @@ public class SimpleLazyMap extends AbstractMap {
 
   @Override
   public Object remove(final Object key) {
-    buildIfNeeded();
-    return map.remove(key);
+    throw new UnsupportedOperationException();
   }
 
   @Override
   public void putAll(final Map m) {
-    buildIfNeeded();
-    map.putAll(m);
+    throw new UnsupportedOperationException();
   }
 
   @Override
   public void clear() {
-    if (map == null) {
-      for (int i = 0; i < size; i++) {
-        keys[i] = null;
-        values[i] = null;
-      }
-      size = 0;
-    } else {
-      map.clear();
-    }
-  }
-
-  @Override
-  public Set keySet() {
-    return map == null ? set(size, keys) : map.keySet();
-  }
-
-  @Override
-  public Collection values() {
-    return map == null ? Arrays.asList(values) : map.values();
-  }
-
-  @Override
-  public boolean equals(final Object o) {
-    buildIfNeeded();
-    return map.equals(o);
-  }
-
-  @Override
-  public int hashCode() {
-    buildIfNeeded();
-    return map.hashCode();
-  }
-
-  @Override
-  public String toString() {
-    buildIfNeeded();
-    return map.toString();
-  }
-
-  @Override
-  protected Object clone() {
-    if (map == null) {
-      return null;
-    }
-    if (map instanceof LinkedHashMap) {
-      return ((LinkedHashMap) map).clone();
-    }
-    return copy(this);
-  }
-
-  public static <K, V> Map<K, V> copy(final Map<K, V> map) {
-    if (map instanceof LinkedHashMap) {
-      return new LinkedHashMap<>(map);
-    }
-    if (map instanceof ConcurrentHashMap) {
-      return new ConcurrentHashMap<>(map);
-    }
-    return new HashMap<>(map);
+    throw new UnsupportedOperationException();
   }
 
   // ---------------------------------------------------------------- utils
-
-  private static <V> Set<V> set(final int size, final V... array) {
-    int index = 0;
-    final Set<V> set = new HashSet<>();
-
-    for (final V v : array) {
-      set.add(v);
-      index++;
-      if (index == size) {
-        break;
-      }
-    }
-    return set;
-  }
 
   private static <V> V[] grow(final V[] array) {
     final Object newArray = Array.newInstance(array.getClass().getComponentType(), array.length * 2);
     System.arraycopy(array, 0, newArray, 0, array.length);
     return (V[]) newArray;
-  }
-
-  private class FakeEntrySet implements Set {
-
-    @Override
-    public Iterator iterator() {
-      return new Iterator() {
-
-        private int index;
-
-        @Override
-        public boolean hasNext() {
-          return index < size;
-        }
-
-        @Override
-        public Object next() {
-          Map.Entry<Object, Object> entry = new AbstractMap.SimpleEntry<>(keys[index], values[index]);
-          index++;
-          return entry;
-        }
-      };
-    }
-
-    @Override
-    public int size() {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean isEmpty() {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean contains(Object o) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Object[] toArray() {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean add(Object o) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean remove(Object o) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean addAll(Collection c) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void clear() {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean removeAll(Collection c) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean retainAll(Collection c) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean containsAll(Collection c) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Object[] toArray(Object[] a) {
-      throw new UnsupportedOperationException();
-    }
-  }
-
-  private class FakeValuesCollection implements Collection {
-
-    @Override
-    public Iterator iterator() {
-      return new Iterator() {
-
-        private int index = 0;
-
-        @Override
-        public boolean hasNext() {
-          return index < size;
-        }
-
-        @Override
-        public Object next() {
-          return values[index++];
-        }
-      };
-    }
-
-    @Override
-    public int size() {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean isEmpty() {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean contains(Object o) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Object[] toArray() {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean add(Object o) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean remove(Object o) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean addAll(Collection c) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void clear() {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean retainAll(Collection c) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean removeAll(Collection c) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public boolean containsAll(Collection c) {
-      throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public Object[] toArray(Object[] a) {
-      throw new UnsupportedOperationException();
-    }
   }
 }
