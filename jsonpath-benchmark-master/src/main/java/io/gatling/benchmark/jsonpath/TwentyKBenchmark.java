@@ -13,9 +13,12 @@ public class TwentyKBenchmark {
 
   private static final byte[][] CHUNKS = split(readBytes("data/20k.json"), MTU);
 
-  @Param({"$..address",
-          "$..friends..name",
-          "$..friends[?(@.id == 1)].name"})
+  @Param({
+//          "$..address",
+          "$..friends..name"
+//          ,
+//          "$..friends[?(@.id == 1)].name"
+  })
   public String path;
 
 //  @Benchmark

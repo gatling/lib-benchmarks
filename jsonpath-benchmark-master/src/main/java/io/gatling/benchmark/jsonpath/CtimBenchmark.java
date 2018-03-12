@@ -13,7 +13,8 @@ public class CtimBenchmark {
 
   private static final byte[][] CHUNKS = split(readBytes("data/citm.json"), MTU);
 
-  @Param({"$.events.*.name",
+  @Param({
+//          "$.events.*.name",
           "$.performances[?(@.eventId == 339420805)]"})
   public String path;
 

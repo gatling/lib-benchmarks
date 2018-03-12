@@ -13,13 +13,16 @@ public class TwitterBenchmark {
 
   private static final byte[][] CHUNKS = split(readBytes("data/twitter.json"), MTU);
 
-  @Param({"$.completed_in",
-          "$.results[:3].from_user",
-          "$.results[1:9:-2].from_user",
-          "$.results[*].to_user_name",
-          "$.results[5].metadata.result_type",
-          "$.results[?(@.from_user == 'anna_gatling')]",
-          "$.results[?(@.from_user_id >= 1126180920)]"})
+  @Param({
+          "$.completed_in"
+//          ,
+//          "$.results[:3].from_user",
+//          "$.results[1:9:-2].from_user",
+//          "$.results[*].to_user_name",
+//          "$.results[5].metadata.result_type",
+//          "$.results[?(@.from_user == 'anna_gatling')]",
+//          "$.results[?(@.from_user_id >= 1126180920)]"
+  })
   public String path;
 
 //  @Benchmark
