@@ -16,15 +16,15 @@ public class WebXmlBenchmark {
   @Param({"$.web-app.servlet[0].init-param.dataStoreName"})
   public String path;
 
-  @Benchmark
-  public Object gatling_boon_chars() {
-    return BoonHelper.parseChars(CHUNKS, path);
-  }
-
-  @Benchmark
-  public Object gatling_boon_stream() {
-    return BoonHelper.parseStream(CHUNKS, path);
-  }
+//  @Benchmark
+//  public Object gatling_boon_chars() {
+//    return BoonHelper.parseChars(CHUNKS, path);
+//  }
+//
+//  @Benchmark
+//  public Object gatling_boon_stream() {
+//    return BoonHelper.parseStream(CHUNKS, path);
+//  }
 
   @Benchmark
   public Object gatling_gson_string() {

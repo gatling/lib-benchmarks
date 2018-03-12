@@ -22,15 +22,15 @@ public class TwitterBenchmark {
           "$.results[?(@.from_user_id >= 1126180920)]"})
   public String path;
 
-  @Benchmark
-  public Object gatling_boon_chars() {
-    return BoonHelper.parseChars(CHUNKS, path);
-  }
-
-  @Benchmark
-  public Object gatling_boon_stream() {
-    return BoonHelper.parseStream(CHUNKS, path);
-  }
+//  @Benchmark
+//  public Object gatling_boon_chars() {
+//    return BoonHelper.parseChars(CHUNKS, path);
+//  }
+//
+//  @Benchmark
+//  public Object gatling_boon_stream() {
+//    return BoonHelper.parseStream(CHUNKS, path);
+//  }
 
   @Benchmark
   public Object gatling_gson_string() {
