@@ -32,15 +32,15 @@ public class TwitterBenchmark {
 //    return BoonHelper.parseStream(CHUNKS, path);
 //  }
 
-  @Benchmark
-  public Object gatling_gson_string() {
-    return GsonHelper.parseString(CHUNKS, path);
-  }
-
-  @Benchmark
-  public Object gatling_gson_stream() {
-    return GsonHelper.parseStream(CHUNKS, path);
-  }
+//  @Benchmark
+//  public Object gatling_gson_string() {
+//    return GsonHelper.parseString(CHUNKS, path);
+//  }
+//
+//  @Benchmark
+//  public Object gatling_gson_stream() {
+//    return GsonHelper.parseStream(CHUNKS, path);
+//  }
 
   @Benchmark
   public Object gatling_jackson_string() throws Exception {
