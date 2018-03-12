@@ -11,6 +11,8 @@ import java.io.InputStream;
 
 public final class Bytes {
 
+  public static final int MTU = 1500;
+
   public static byte[] readBytes(String path) {
     try {
       return IOUtils.toByteArray(Thread.currentThread().getContextClassLoader().getResourceAsStream(path));
