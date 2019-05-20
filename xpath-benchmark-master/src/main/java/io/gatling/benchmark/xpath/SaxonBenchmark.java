@@ -28,24 +28,21 @@ public class SaxonBenchmark extends AbstractXPathBenchmark {
 	// FIXME, if we were using namespaces, we'd have to have one XPathCompiler per namespace list
 	private static final XPathCompiler xPathCompiler = SAXON_PROCESSOR.newXPathCompiler(); // namespaces
 
-	private static final Map<String, ThreadLocal<XPathSelector>> SAXON_XPATH_SELECTORS = new ConcurrentHashMap<String, ThreadLocal<XPathSelector>>();
+	private static final Map<String, ThreadLocal<XPathSelector>> SAXON_XPATH_SELECTORS = new ConcurrentHashMap<>();
 
 
 	private XPathSelector getSelector(final String path) {
 		ThreadLocal<XPathSelector> xPathSelectorTL = SAXON_XPATH_SELECTORS.get(path);
 		if (xPathSelectorTL == null) {
 			xPathSelectorTL = SAXON_XPATH_SELECTORS.computeIfAbsent(path, p ->
-				new ThreadLocal<XPathSelector>() {
-					@Override
-					protected XPathSelector initialValue() {
-						try {
-							XPathExecutable xPathExecutable = xPathCompiler.compile(path);
-							return xPathExecutable.load(); // not threadsafe but reusable
-						} catch (SaxonApiException e) {
-							throw new ExceptionInInitializerError(e);
-						}
+				ThreadLocal.withInitial(() -> {
+					try {
+						XPathExecutable xPathExecutable = xPathCompiler.compile(path);
+						return xPathExecutable.load(); // not threadsafe but reusable
+					} catch (SaxonApiException e) {
+						throw new ExceptionInInitializerError(e);
 					}
-				}
+				})
 			);
 		}
 		return xPathSelectorTL.get();
@@ -67,10 +64,6 @@ public class SaxonBenchmark extends AbstractXPathBenchmark {
 
 			} else if (xdmValue instanceof XdmItem) {
 				XdmItem value = (XdmItem) xdmValue;
-				return value.getStringValue();
-
-			} else if (xdmValue instanceof XdmNode) {
-				XdmNode value = (XdmNode) xdmValue;
 				return value.getStringValue();
 
 			} else {

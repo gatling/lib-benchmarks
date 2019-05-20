@@ -29,7 +29,7 @@ public final class FastStringReader extends Reader {
   }
 
   @Override
-  public int read(char cbuf[], int off, int len) throws IOException {
+  public int read(char[] cbuf, int off, int len) throws IOException {
     ensureOpen();
     if (len == 0) {
       return 0;
