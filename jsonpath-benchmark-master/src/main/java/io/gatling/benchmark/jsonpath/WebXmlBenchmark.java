@@ -17,16 +17,6 @@ public class WebXmlBenchmark {
   public String path;
 
 //  @Benchmark
-//  public Object gatling_boon_chars() {
-//    return BoonHelper.parseChars(CHUNKS, path);
-//  }
-//
-//  @Benchmark
-//  public Object gatling_boon_stream() {
-//    return BoonHelper.parseStream(CHUNKS, path);
-//  }
-
-//  @Benchmark
 //  public Object gatling_gson_string() {
 //    return GsonHelper.parseString(CHUNKS, path);
 //  }

@@ -1,16 +1,11 @@
 package io.gatling.benchmark.jsonpath.parser;
 
 import io.gatling.benchmark.util.Bytes;
-import jodd.json.FixedLazyJsonParser;
 import jodd.json.JsonParser;
 
 public class JoddHelper {
 
-  private static final ThreadLocal<JsonParser> JSON_PARSER_THREAD_LOCAL = ThreadLocal.withInitial(() -> {
-    FixedLazyJsonParser parser = (FixedLazyJsonParser) new FixedLazyJsonParser().lazy(true);
-    parser.forceSuppliers();
-    return parser;
-  });
+  private static final ThreadLocal<JsonParser> JSON_PARSER_THREAD_LOCAL = ThreadLocal.withInitial(JsonParser::createLazyOne);
 
   public static Object parseString(byte[][] chunks, String path) {
     String string = Bytes.toString(chunks);
