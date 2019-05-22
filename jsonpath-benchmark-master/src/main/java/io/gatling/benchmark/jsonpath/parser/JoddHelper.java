@@ -1,19 +1,17 @@
 package io.gatling.benchmark.jsonpath.parser;
 
 import io.gatling.benchmark.util.Bytes;
+import io.gatling.benchmark.util.Iterators;
 import jodd.json.JsonParser;
+
+import java.util.List;
 
 public class JoddHelper {
 
-  private static final ThreadLocal<JsonParser> JSON_PARSER_THREAD_LOCAL = ThreadLocal.withInitial(JsonParser::createLazyOne);
+  private static final ThreadLocal<JsonParser> JSON_PARSER_THREAD_LOCAL = ThreadLocal.withInitial(JsonParser::create);
 
-  public static Object parseString(byte[][] chunks, String path) {
+  public static List<Object> parseString(byte[][] chunks, String path) {
     String string = Bytes.toString(chunks);
-    return GatlingHelper.compile(path).query(JSON_PARSER_THREAD_LOCAL.get().parse(string));
-  }
-
-  public static Object parseChars(byte[][] chunks, String path) {
-    char[] chars = Bytes.toChars(chunks);
-    return GatlingHelper.compile(path).query(JSON_PARSER_THREAD_LOCAL.get().parse(chars));
+    return Iterators.toList(GatlingHelper.compile(path).query(JSON_PARSER_THREAD_LOCAL.get().parse(string)));
   }
 }

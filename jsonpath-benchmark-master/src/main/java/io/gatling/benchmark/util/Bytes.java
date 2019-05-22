@@ -54,29 +54,4 @@ public final class Bytes {
         buf.release();
       }
   }
-
-  public static byte[] toBytes(byte[][] chunks) {
-    int len = 0;
-    for (byte[] chunk : chunks) {
-      len += chunk.length;
-    }
-    byte[] total = new byte[len];
-
-    int offset = 0;
-    for (byte[] chunk : chunks) {
-      System.arraycopy(chunk, 0, total, offset, chunk.length);
-      offset += chunk.length;
-    }
-
-    return total;
-  }
-
-  public static char[] toChars(byte[][] chunks) {
-      ByteBuf buf = Unpooled.wrappedBuffer(chunks);
-      try {
-        return Utf8ByteBufCharsetDecoder.decodeUtf8Chars(buf);
-      } finally {
-        buf.release();
-      }
-  }
 }

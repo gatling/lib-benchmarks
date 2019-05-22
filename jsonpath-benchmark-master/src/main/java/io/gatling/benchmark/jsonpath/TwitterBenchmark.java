@@ -25,45 +25,15 @@ public class TwitterBenchmark {
   })
   public String path;
 
-//  @Benchmark
-//  public Object gatling_gson_string() {
-//    return GsonHelper.parseString(CHUNKS, path);
-//  }
-//
-//  @Benchmark
-//  public Object gatling_gson_stream() {
-//    return GsonHelper.parseStream(CHUNKS, path);
-//  }
-
-//  @Benchmark
-//  public Object gatling_jackson_string() throws Exception {
-//    return JacksonHelper.parseString(CHUNKS, path);
-//  }
-
   @Benchmark
   public Object gatling_jackson_stream() throws Exception {
     return JacksonHelper.parseStream(CHUNKS, path);
   }
 
   @Benchmark
-  public Object gatling_jodd_string() throws Exception {
+  public Object gatling_jodd_string() {
     return JoddHelper.parseString(CHUNKS, path);
   }
-
-  @Benchmark
-  public Object gatling_jodd_chars() throws Exception {
-    return JoddHelper.parseChars(CHUNKS, path);
-  }
-
-//  @Benchmark
-//  public Object jayway_jackson_string() throws Exception {
-//    return JaywayJacksonHelper.parseString(CHUNKS, path);
-//  }
-//
-//  @Benchmark
-//  public Object jayway_jackson_bytes() throws Exception {
-//    return JaywayJacksonHelper.parseString(CHUNKS, path);
-//  }
 
   @Benchmark
   public Object jayway_jackson_stream() throws Exception {
