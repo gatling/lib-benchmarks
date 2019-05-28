@@ -1,5 +1,6 @@
 package io.gatling.benchmark.jsonpath.parser;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.gatling.benchmark.util.Bytes;
 import io.gatling.benchmark.util.Iterators;
@@ -11,8 +12,8 @@ public class JacksonHelper {
 
   private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
-  public static List<Object> parseStream(byte[][] chunks, String path) throws Exception {
+  public static List<JsonNode> parseStream(byte[][] chunks, String path) throws Exception {
     InputStream is = Bytes.toInputStream(chunks);
-    return Iterators.toList(GatlingHelper.compile(path).query(OBJECT_MAPPER.readValue(is, Object.class)));
+    return Iterators.toList(GatlingHelper.compile(path).query(OBJECT_MAPPER.readValue(is, JsonNode.class)));
   }
 }
