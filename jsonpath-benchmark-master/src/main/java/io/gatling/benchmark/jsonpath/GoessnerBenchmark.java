@@ -29,7 +29,7 @@ public class GoessnerBenchmark {
 //          "$.store['book'][:2].title",
 //          "$.store.book[?(@.isbn)].title",
 //          "$.store.book[?(@.category == 'fiction')].title",
-          "$.store.book[?(@.price < 10 && @.price >4)].title"})
+          "$.store.book[?(@.price < 10 && @.price > 4)].title"})
   public String path;
 
   @Benchmark
