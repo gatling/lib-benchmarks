@@ -15,7 +15,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <jayway.version>2.5.0</jayway.version>
-    <gatling-jsonpath.version>3.5.1</gatling-jsonpath.version>
+    <gatling.version>3.5.1</gatling.version>
     <jackson.version>2.12.3</jackson.version>
 
     <slf4j.version>1.7.30</slf4j.version>
@@ -42,12 +42,12 @@
     <dependency>
       <groupId>io.gatling</groupId>
       <artifactId>gatling-jsonpath</artifactId>
-      <version>${gatling-jsonpath.version}</version>
+      <version>${gatling.version}</version>
     </dependency>
     <dependency>
       <groupId>io.gatling</groupId>
       <artifactId>gatling-netty-util</artifactId>
-      <version>${gatling-jsonpath.version}</version>
+      <version>${gatling.version}</version>
     </dependency>
 
     <dependency>

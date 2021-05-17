@@ -2,9 +2,9 @@
 <configuration>
 
 	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<immediateFlush>false</immediateFlush>
 		<encoder>
 			<pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{15}-%L - %msg%n%rEx</pattern>
-			<immediateFlush>false</immediateFlush>
 		</encoder>
 	</appender>
 

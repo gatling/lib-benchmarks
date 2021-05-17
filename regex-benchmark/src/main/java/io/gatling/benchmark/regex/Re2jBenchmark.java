@@ -27,14 +27,12 @@ package io.gatling.benchmark.regex;
 
 import com.google.re2j.Matcher;
 import com.google.re2j.Pattern;
-import io.gatling.benchmark.util.UnsafeUtil;
+import io.gatling.benchmark.util.GatlingBytes;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
 import org.openjdk.jmh.annotations.State;
 
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -65,36 +63,25 @@ public class Re2jBenchmark {
     return res;
   }
 
-	private Matcher parseString(byte[] bytes, Pattern pattern) throws Exception {
+	private Matcher parseString(byte[] bytes, Pattern pattern) {
 		String text = new String(bytes, StandardCharsets.UTF_8);
 		return pattern.matcher(text);
 	}
 
-	private Matcher parseFastCharSequence(byte[] bytes, Pattern pattern) throws Exception {
-		String text = new String(bytes, StandardCharsets.UTF_8);
-		return pattern.matcher(UnsafeUtil.newFastCharSequence(text));
-	}
-
-	private Matcher parseCharBuffer(byte[] bytes, Pattern pattern) throws Exception {
-		CharBuffer buffer = StandardCharsets.UTF_8.decode(ByteBuffer.wrap(bytes));
-		return pattern.matcher(buffer);
+	private Matcher parseGatlingBytes(byte[] bytes, Pattern pattern) {
+		String text = GatlingBytes.toUtf8String(bytes);
+		return pattern.matcher(text);
 	}
 
 	@Benchmark
-	public List<String> parseString(ThreadState state) throws Exception {
+	public List<String> parseString(ThreadState state) {
 		int i = state.next();
 		return extractAll(parseString(ALL_BYTES[i], RE2J_ALL_PATTERNS[i]));
 	}
 
 	@Benchmark
-	public List<String> parseFastCharSequence(ThreadState state) throws Exception {
+	public List<String> parseGatling(ThreadState state) {
 		int i = state.next();
-		return extractAll(parseFastCharSequence(ALL_BYTES[i], RE2J_ALL_PATTERNS[i]));
-	}
-
-	@Benchmark
-	public List<String> parseCharBuffer(ThreadState state) throws Exception {
-		int i = state.next();
-		return extractAll(parseCharBuffer(ALL_BYTES[i], RE2J_ALL_PATTERNS[i]));
+		return extractAll(parseGatlingBytes(ALL_BYTES[i], RE2J_ALL_PATTERNS[i]));
 	}
 }
