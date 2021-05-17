@@ -25,43 +25,33 @@
 
 package io.gatling.benchmark.cssselectors;
 
-import java.util.List;
+import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
-import jodd.lagarto.dom.LagartoDOMBuilder;
-import jodd.lagarto.dom.Node;
-import jodd.lagarto.dom.NodeSelector;
-
-import jodd.util.UnsafeUtil;
+import org.jsoup.helper.DataUtil;
+import org.jsoup.nodes.Document;
+import org.jsoup.parser.Parser;
+import org.jsoup.select.Selector;
 import org.openjdk.jmh.annotations.*;
 
 @OutputTimeUnit(TimeUnit.SECONDS)
 @State(Scope.Benchmark)
-public class JoddBenchmark {
+public class JsoupBenchmark {
 
-	private static final LagartoDOMBuilder LAGARTO_DOM_BUILDER = new LagartoDOMBuilder();
+  @Param({"0", "1", "2", "3"})
+  public int sample;
 
-	@Param({"0", "1", "2", "3"})
-	public int sample;
-
-	@Benchmark
-	public List<Node> parseJava8CharStealing() {
-		Data data = Data.DATA[sample];
-		char[] chars = UnsafeUtil.getChars(data.toString());
-		return new NodeSelector(LAGARTO_DOM_BUILDER.parse(chars)).select(data.joddSelectors);
-	}
-
-	@Benchmark
-	public List<Node> parseJava8CharDirect() {
-		Data data = Data.DATA[sample];
-		char[] chars = data.toChars();
-		return new NodeSelector(LAGARTO_DOM_BUILDER.parse(chars)).select(data.joddSelectors);
-	}
-
-	@Benchmark
-	public List<Node> parseCharCopy() {
-		Data data = Data.DATA[sample];
-		char[] chars = data.toString().toCharArray();
-		return new NodeSelector(LAGARTO_DOM_BUILDER.parse(chars)).select(data.joddSelectors);
-	}
+//  @Benchmark
+//  public Object parseString() {
+//    Data data = Data.DATA[sample];
+//    Document doc = Parser.parse(data.toString(), "http://gatling-tool.org");
+//    return Selector.select(data.jsoupEvaluator, doc);
+//  }
+//
+//  @Benchmark
+//  public Object parseInputStream() throws Exception {
+//    Data data = Data.DATA[sample];
+//    Document doc = DataUtil.load(data.toInputStream(), StandardCharsets.UTF_8.name(), "http://gatling-tool.org");
+//    return Selector.select(data.jsoupEvaluator, doc);
+//  }
 }
