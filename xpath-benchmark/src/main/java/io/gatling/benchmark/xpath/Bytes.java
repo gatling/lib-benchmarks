@@ -12,9 +12,8 @@ public class Bytes {
 	public static final List<Couple<byte[][], String>> BYTES_AND_PATHS = new ArrayList<>();
 
 	static {
-
-		BYTES_AND_PATHS.add(new Couple<byte[][], String>(split(readBytes("data/text1.xml")), "/test/store/book[3]/author"));
-		BYTES_AND_PATHS.add(new Couple<byte[][], String>(split(readBytes("data/text2.xml")), "//id[@id = 'id13']/distance"));
+		BYTES_AND_PATHS.add(new Couple<>(split(readBytes("data/text1.xml")), "/test/store/book[3]/author"));
+		BYTES_AND_PATHS.add(new Couple<>(split(readBytes("data/text2.xml")), "//id[@id = 'id13']/distance"));
 	}
 
 	private static byte[] readBytes(String path) {
@@ -53,7 +52,7 @@ public class Bytes {
 			private boolean eof;
 
 			@Override
-			public int read() throws IOException {
+			public int read() {
 
 				if (eof) {
 					return -1;
@@ -78,7 +77,7 @@ public class Bytes {
 			}
 
 			@Override
-			public int read(byte b[], int off, int len) throws IOException {
+			public int read(byte[] b, int off, int len) {
 
 				if (eof)
 					return -1;
@@ -113,7 +112,7 @@ public class Bytes {
 		};
 	}
 
-	private static final byte[][] split(byte[] full) {
+	private static byte[][] split(byte[] full) {
 
 		int chunkNumber = (int) Math.ceil(full.length / 2048.0);
 		byte[][] chunks = new byte[chunkNumber][];

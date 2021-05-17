@@ -7,7 +7,6 @@ import org.xml.sax.InputSource;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
@@ -36,7 +35,7 @@ public class JdkBenchmark extends AbstractXPathBenchmark {
         }
     });
 
-    private static final ThreadLocal<XPathFactory> XPATH_FACTORY = ThreadLocal.withInitial(() -> XPathFactory.newInstance());
+    private static final ThreadLocal<XPathFactory> XPATH_FACTORY = ThreadLocal.withInitial(XPathFactory::newInstance);
 
     private static final Map<String, XPathExpression> EXPRESSIONS = new ConcurrentHashMap<>();
 
@@ -44,9 +43,8 @@ public class JdkBenchmark extends AbstractXPathBenchmark {
         XPathExpression expression = EXPRESSIONS.get(path);
         if (expression == null) {
             expression = EXPRESSIONS.computeIfAbsent(path, p -> {
-                XPath xpath = XPATH_FACTORY.get().newXPath();
                 try {
-                    return xpath.compile(p);
+                    return XPATH_FACTORY.get().newXPath().compile(p);
                 } catch (XPathExpressionException e) {
                     throw new RuntimeException(e);
                 }
