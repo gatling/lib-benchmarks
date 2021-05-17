@@ -14,15 +14,15 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <jayway.version>2.4.0</jayway.version>
-    <gatling-jsonpath.version>0.7.0</gatling-jsonpath.version>
-    <jackson.version>2.9.9</jackson.version>
+    <jayway.version>2.5.0</jayway.version>
+    <gatling-jsonpath.version>3.5.1</gatling-jsonpath.version>
+    <jackson.version>2.12.3</jackson.version>
 
-    <slf4j.version>1.7.26</slf4j.version>
+    <slf4j.version>1.7.30</slf4j.version>
     <logback.version>1.2.3</logback.version>
-    <commons-io.version>2.6</commons-io.version>
+    <commons-io.version>2.8.0</commons-io.version>
 
-    <jmh.version>1.21</jmh.version>
+    <jmh.version>1.31</jmh.version>
   </properties>
 
   <dependencies>
@@ -41,7 +41,12 @@
 
     <dependency>
       <groupId>io.gatling</groupId>
-      <artifactId>jsonpath_2.12</artifactId>
+      <artifactId>gatling-jsonpath</artifactId>
+      <version>${gatling-jsonpath.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.gatling</groupId>
+      <artifactId>gatling-netty-util</artifactId>
       <version>${gatling-jsonpath.version}</version>
     </dependency>
 
@@ -80,12 +85,11 @@
       <artifactId>commons-io</artifactId>
       <version>${commons-io.version}</version>
     </dependency>
-
-    <dependency>
-      <groupId>org.asynchttpclient</groupId>
-      <artifactId>async-http-client-netty-utils</artifactId>
-      <version>2.9.0</version>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.asynchttpclient</groupId>-->
+<!--      <artifactId>async-http-client-netty-utils</artifactId>-->
+<!--      <version>2.9.0</version>-->
+<!--    </dependency>-->
   </dependencies>
 
   <build>
