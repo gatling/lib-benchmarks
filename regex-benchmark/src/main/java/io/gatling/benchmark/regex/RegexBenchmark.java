@@ -25,7 +25,7 @@
 
 package io.gatling.benchmark.regex;
 
-import static io.gatling.benchmark.regex.Bytes.*;
+import static io.gatling.benchmark.regex.Data.*;
 
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import io.gatling.benchmark.util.GatlingBytes;
+import io.gatling.benchmark.util.Bytes;
 import org.openjdk.jmh.annotations.Benchmark;
 import org.openjdk.jmh.annotations.OutputTimeUnit;
 import org.openjdk.jmh.annotations.Scope;
@@ -62,13 +62,13 @@ public class RegexBenchmark {
     return res;
   }
 
-	private Matcher parseString(byte[] bytes, Pattern pattern) {
-		String text = new String(bytes, StandardCharsets.UTF_8);
+	private Matcher parseString(byte[][] chunks, Pattern pattern) {
+		String text = new String(Bytes.sumChunks(chunks), StandardCharsets.UTF_8);
 		return pattern.matcher(text);
 	}
 
-	private Matcher parseGatlingBytes(byte[] bytes, Pattern pattern) {
-		String text = GatlingBytes.toUtf8String(bytes);
+	private Matcher parseGatlingBytes(byte[][] chunks, Pattern pattern) {
+		String text = Bytes.toString(chunks);
 		return pattern.matcher(text);
 	}
 
