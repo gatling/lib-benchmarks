@@ -6,7 +6,7 @@ Input is byte arrays. Benchmark accounts for byte decoding too.
 
 ## tl;dr
 
-* Re2j is faster than Java regex
+* Java regex is faster than Re2j
 * Gatling's chunks UTF-8 decoder is faster than summing arrays and decoding String
 
 ## How to
@@ -26,28 +26,28 @@ Here are the results on my machine:
 
 ```
 Benchmark                     Mode  Cnt     Score     Error  Units
-Re2jBenchmark.parseGatling   thrpt    5  2123.864 ± 345.421  ops/s
-Re2jBenchmark.parseString    thrpt    5  1460.959 ±  94.530  ops/s
-RegexBenchmark.parseGatling  thrpt    5  1593.741 ±  48.431  ops/s
-RegexBenchmark.parseString   thrpt    5  1096.875 ± 205.551  ops/s
+Re2jBenchmark.parseGatling   thrpt    5  5857.030 ± 209.367  ops/s
+Re2jBenchmark.parseString    thrpt    5  5899.502 ± 465.293  ops/s
+RegexBenchmark.parseGatling  thrpt    5  8499.030 ± 304.571  ops/s
+RegexBenchmark.parseString   thrpt    5  8508.865 ± 274.854  ops/s
 ```
 
 * Hotspot 11.0.11
 
 ```
-Benchmark                     Mode  Cnt     Score     Error  Units
-Re2jBenchmark.parseGatling   thrpt    5  2182.066 ± 169.769  ops/s
-Re2jBenchmark.parseString    thrpt    5  1282.212 ± 196.925  ops/s
-RegexBenchmark.parseGatling  thrpt    5  1410.529 ±  77.144  ops/s
-RegexBenchmark.parseString   thrpt    5  1006.955 ±  29.149  ops/s
+Benchmark                     Mode  Cnt     Score      Error  Units
+Re2jBenchmark.parseGatling   thrpt    5  6202.381 ± 1629.981  ops/s
+Re2jBenchmark.parseString    thrpt    5  6201.677 ±  789.966  ops/s
+RegexBenchmark.parseGatling  thrpt    5  8261.909 ±  169.661  ops/s
+RegexBenchmark.parseString   thrpt    5  7950.688 ±  715.793  ops/s
 ```
 
 * Hotspot 16.0.1
 
 ```
-Benchmark                     Mode  Cnt     Score     Error  Units
-Re2jBenchmark.parseGatling   thrpt    5  2407.383 ± 348.302  ops/s
-Re2jBenchmark.parseString    thrpt    5  1320.450 ± 157.699  ops/s
-RegexBenchmark.parseGatling  thrpt    5  1486.626 ±  31.614  ops/s
-RegexBenchmark.parseString   thrpt    5   960.175 ±  91.793  ops/s
+Benchmark                     Mode  Cnt     Score      Error  Units
+Re2jBenchmark.parseGatling   thrpt    5  6590.846 ±  477.347  ops/s
+Re2jBenchmark.parseString    thrpt    5  5107.540 ±   33.092  ops/s
+RegexBenchmark.parseGatling  thrpt    5  9499.798 ± 1705.814  ops/s
+RegexBenchmark.parseString   thrpt    5  7431.564 ± 1502.187  ops/s
 ```

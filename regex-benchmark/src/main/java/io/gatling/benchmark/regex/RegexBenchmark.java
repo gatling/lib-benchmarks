@@ -55,19 +55,19 @@ public class RegexBenchmark {
 		}
 	}
 
-  private List<String> extractAll(Matcher matcher) {
+  static List<String> extractAll(Matcher matcher) {
     List<String> res = new ArrayList<>();
     while (matcher.find())
-      res.add(matcher.group(0));
+      res.add(matcher.group(1));
     return res;
   }
 
-	private Matcher parseString(byte[][] chunks, Pattern pattern) {
+	static Matcher parseString(byte[][] chunks, Pattern pattern) {
 		String text = new String(Bytes.sumChunks(chunks), StandardCharsets.UTF_8);
 		return pattern.matcher(text);
 	}
 
-	private Matcher parseGatlingBytes(byte[][] chunks, Pattern pattern) {
+	static Matcher parseGatlingBytes(byte[][] chunks, Pattern pattern) {
 		String text = Bytes.toString(chunks);
 		return pattern.matcher(text);
 	}
